@@ -1,0 +1,114 @@
+{% extends "we/base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+{#    <div>#}
+{#        <div style="padding: 0px;width: 100%;height: 100%;background-position: center;background-size: cover;background-image: url('{% static 'we/images/uoa.jpg' %}')">#}
+{#        </div>#}
+{#        <div class="caption-area" style="bottom: 0;width: 100%;position: absolute;text-align: center;top: 70%;background-color: rgba(0,0,0,0.7);">#}
+{#            <h2 style="color: white;position: absolute;top: 40%;left: 20%;right: 20%;">This is Waste Education System</h2>#}
+{#        </div>#}
+{#    </div>#}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12" style="background-color: #8acfac;height: 100%;">
+                <div class="col-md-12" style="top: 40%;font-size: 80px;padding-left: 100px;font-family: 'Arial Rounded MT Bold'; ">
+                    Seek
+                </div>
+                <div class="col-md-12" style="top: 40%;color: white;padding-left: 100px;font-size: 35px;font-family: 'Arial Rounded MT Bold';">
+                    Build life different
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="container">
+        <div class="row">
+            <div class="col-md-12" style="margin-top: 30px;margin-bottom: 30px;">
+                <span style="text-align: left;font-size: 30px;font-weight: 100;margin-left: 50px;padding-top: 30px !important;">Vote Demo</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                {% if latest_rubbishbin_list %}
+                    <ul>
+                        {% for rubbinshbin in latest_rubbishbin_list %}
+                            <li><a href="{% url 'we:detail' rubbinshbin.id%}">{{ rubbinshbin.bname_text }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No rubbishbin are available.</p>
+                {% endif %}
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12" style="margin-top: 30px;margin-bottom: 30px;">
+                <span style="text-align: left;font-size: 30px;font-weight: 100;margin-left: 50px;padding-top: 30px !important;">Game Demo</span>
+            </div>
+        </div>
+        <div class="row" style="text-align: center;">
+            <div class="col-md-12">
+                <div class="col-md-2"></div>
+                <div id="landfill-area" class="col-md-2 we-bin" style="background-color: #ff6666;">
+                    <span>Landfill<i class="fa fa-check fa-x" style="color: green;"></i></span>
+
+                </div>
+                <div id="recycle-area" class="col-md-2 we-bin" style="background-color: #e4e600;">
+                    <span>Recycling</span>
+                </div>
+                <div class="col-md-2 we-bin" style="background-color: #4db8ff;">
+                    <span>Paper</span>
+                </div>
+                <div class="col-md-2 we-bin" style="background-color: #00cc66;">
+                    <span>Organics</span>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div id="drag-parent" class="col-md-12" style="text-align: center;">
+                <div id="draggable1" class="col-md-2" style="background-color: black;height: 100px;width: 100px;padding-left: 10px;">
+                    <span style="color: white;line-height: 100px;vertical-align: middle;text-align: center;font-size: 10px;">Packets</span>
+                </div>
+                <div id="draggable2" class="col-md-2" style="background-color: purple;height: 100px;width: 100px;padding-left: 10px;">
+                    <span style="color: white;line-height: 100px;vertical-align: middle;text-align: center;font-size: 10px;">Milk Bottles</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="{% static 'we/js/jquery-1.10.2.js' %}"></script>
+    <script src="{% static 'we/js/jquery-ui.js' %}"></script>
+    <script src="{% static 'we/js/bootstrap.min.js' %}"></script>
+    <script>
+        $('.fa').hide();
+        $('#draggable1').draggable({containment: "#container", scroll: false, revert: true});
+        $('#draggable2').draggable({containment: "#container", scroll: false, revert: true});
+        $('#landfill-area').droppable({
+            accept: '#draggable1',
+            drop: function(event, ui){
+                if(ui.draggable.attr("id")=="draggable1"){
+                    $(this).find(".fa").fadeIn(500).delay(1200).fadeOut(500);
+                    $('#draggable1').fadeOut();
+                }else if(ui.draggable.attr("id")=="draggable2"){
+                    $(this).find("span").html("Wrong!");
+                }
+            }
+        });
+        $('#recycle-area').droppable({
+            accept: '#draggable2',
+            drop: function(event, ui){
+                if(ui.draggable.attr("id")=="draggable1"){
+                    $(this).find("span").html("Wrong!");
+                }else if(ui.draggable.attr("id")=="draggable2"){
+                    $(this).find(".fa").fadeIn(500).delay(1200).fadeOut(500);
+                    $('#draggable2').fadeOut();
+                }
+            }
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "we/base.html" %}
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+
+<body>
+    {% block content %}
+    <div class="container" style="margin-top: 50px;">
+       <form action="{% url 'we:surveyhandler'%}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="question-count" value="{{ questionlist_count }}"/>
+            {% for i in questionlist %}
+                <div class="row">
+                    <hr>
+                    <div class="col-md-12">
+                        {{ i.question_desc }}
+                    </div>
+                    <div class="col-md-12">
+                         {% if i.question_type == 'C' %}
+                             <img src="{{ i.img_url }}" style="height: 50%;width: 60%;">
+                         {% elif i.question_type == 'D' %}
+                             <iframe width="560" height="315" src="{{ i.video_url }}" frameborder="0" allowfullscreen></iframe>
+                         {% endif %}
+                    </div>
+                    <div class="col-md-12">
+
+                        <div><input type="radio" name="question{{ forloop.counter }}" value="{{ i.id }}-A" style="margin-right: 5px;">{{ i.first_desc }}</div>
+                        <div><input type="radio" name="question{{ forloop.counter }}" value="{{ i.id }}-B" style="margin-right: 5px;">{{ i.second_desc }}</div>
+                        <div><input type="radio" name="question{{ forloop.counter }}" value="{{ i.id }}-C" style="margin-right: 5px;">{{ i.third_desc }}</div>
+                        <div><input type="radio" name="question{{ forloop.counter }}" value="{{ i.id }}-D" style="margin-right: 5px;">{{ i.fourth_desc }}</div>
+                    </div>
+                </div>
+            {% endfor %}
+            <hr>
+            <input class="btn btn-info" type="submit" value="Submit"/>
+       </form>
+    </div>
+{% endblock %}
+</body>
+
+</html>
+
+

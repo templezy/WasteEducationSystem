@@ -1,0 +1,19 @@
+<h1>{{ rubbishbin.bname_text }}</h1>
+
+{% if error_message %}
+    <p>
+        <strong>
+            {{ error_message }}
+        </strong>
+    </p>
+{% endif %}
+
+<form action="{% url 'we:choose' rubbishbin.id %}" method="post">
+    {% csrf_token %}
+    {% for waste in rubbishbin.waste_set.all %}
+        <input type="radio" name="waste" id="waste{{ forloop.counter }}" value="{{ waste.id }}"/>
+        <label for="waste{{ forloop.counter }}">{{ waste.wastename_text }}</label>
+    {% endfor %}
+<input type="submit" value="Choose"/>
+</form>
+

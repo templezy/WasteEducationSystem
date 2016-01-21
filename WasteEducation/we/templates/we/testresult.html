@@ -1,0 +1,7 @@
+{#{% extends "we/base.html" %}#}
+{% load staticfiles %}
+
+{{ score }}
+{% for i in questionlist %}
+    <div>{{ i.id }}</div>
+{% endfor %}

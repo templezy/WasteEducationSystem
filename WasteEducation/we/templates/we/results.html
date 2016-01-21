@@ -1,0 +1,9 @@
+<h1>{{ rubbishbin.bname_text }}</h1>
+
+<ul>
+{% for waste in rubbishbin.waste_set.all %}
+    <li>{{ waste.wastename_text }} -- {{ waste.wcount }} vote{{ choice.wcount|pluralize }}</li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'we:detail' rubbishbin.id %}">Choose again?</a>
