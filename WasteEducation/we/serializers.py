@@ -1,4 +1,4 @@
-from .models import Rubbishbin, Question, TrueFalseQuestion
+from .models import Rubbishbin, Question, TrueFalseQuestion, WhichBinQuestion, KeepInMindQuestion, Feedback
 from rest_framework import serializers
 
 
@@ -61,6 +61,7 @@ class TrueFalseSingleQuestionSerializer(serializers.Serializer):
 
     question_text = serializers.CharField()
     question_desc = serializers.CharField()
+    question_reason = serializers.CharField()
     question_choice = serializers.CharField()
     question_score = serializers.IntegerField()
     question_total_times = serializers.IntegerField()
@@ -71,9 +72,69 @@ class TrueFalseSingleQuestionSerializer(serializers.Serializer):
     def update(self, instance, validated_data):
         instance.question_text = validated_data.get('question_text', instance.question_text)
         instance.question_desc = validated_data.get('question_desc', instance.question_desc)
+        instance.question_reason = validated_data.get('question_reason', instance.question_reason)
         instance.question_choice = validated_data.get('question_choice', instance.question_choice)
         instance.question_score = validated_data.get('question_score', instance.question_score)
         instance.question_total_times = validated_data.get('question_total_times', instance.question_total_times)
+        instance.save()
+        return instance
+
+
+class WhichBinSingleQuestionSerializer(serializers.Serializer):
+
+    question_text = serializers.CharField()
+    question_image = serializers.CharField()
+    question_waste_name = serializers.CharField()
+    question_choice = serializers.CharField()
+    question_score = serializers.IntegerField()
+    question_total_times = serializers.IntegerField()
+
+    def create(self, validated_data):
+        return WhichBinQuestion.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance.question_text = validated_data.get('question_text', instance.question_text)
+        instance.question_image = validated_data.get('question_image', instance.question_image)
+        instance.question_waste_name = validated_data.get('question_waste_name', instance.question_waste_name)
+        instance.question_choice = validated_data.get('question_choice', instance.question_choice)
+        instance.question_score = validated_data.get('question_score', instance.question_score)
+        instance.question_total_times = validated_data.get('question_total_times', instance.question_total_times)
+        instance.save()
+        return instance
+
+
+class KeepInMindSingleQuestionSerializer(serializers.Serializer):
+
+    question_text = serializers.CharField()
+    question_content = serializers.CharField()
+    question_choice = serializers.CharField()
+    question_score = serializers.IntegerField()
+    question_total_times = serializers.IntegerField()
+
+    def create(self, validated_data):
+        return KeepInMindQuestion.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance.question_text = validated_data.get('question_text', instance.question_text)
+        instance.question_image = validated_data.get('question_image', instance.question_image)
+        instance.question_choice = validated_data.get('question_choice', instance.question_choice)
+        instance.question_score = validated_data.get('question_score', instance.question_score)
+        instance.question_total_times = validated_data.get('question_total_times', instance.question_total_times)
+        instance.save()
+        return instance
+
+
+class FeedbackSerializer(serializers.Serializer):
+
+    feedback_text = serializers.CharField()
+    feedback_content = serializers.CharField()
+
+    def create(self, validated_data):
+        return Feedback.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance.feedback_text = validated_data.get('feedback_text', instance.feedback_text)
+        instance.feedback_content = validated_data.get('feedback_content', instance.feedback_content)
         instance.save()
         return instance
 

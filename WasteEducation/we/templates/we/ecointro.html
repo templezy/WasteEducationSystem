@@ -1,36 +1,80 @@
-{% extends "we/base.html" %}
 {% load staticfiles %}
 
+{% block csscontent %}
+    <link rel="stylesheet" type="text/css" href="{% static 'we/css/style.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'we/css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'we/css/animate.css' %}"/>
+{% endblock %}
 
 {% block content %}
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12" style="background-color: #ffbe66;height: 100%;">
-                <div class="col-md-12" style="top: 40%;font-size: 80px;padding-left: 200px;font-family: 'Arial Rounded MT Bold'; ">
-                    Insight
-                </div>
-                <div class="col-md-12" style="top: 40%;color: white;padding-left: 200px;font-size: 35px;font-family: 'Arial Rounded MT Bold';">
-                    Make our hub better
-                </div>
-                <div class="col-md-12" style="text-align: right;">
-                    <img src="{% static 'we/images/lib_v2.svg' %}" style="height: 60%;width: 60%;" alt="">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12" style="background-color: #8acfac;height: 100%;">
-                <div class="col-md-12" style="top: 40%;font-size: 80px;padding-left: 200px;font-family: 'Arial Rounded MT Bold'; ">
-                    Brilliant
-                </div>
-                <div class="col-md-12" style="top: 40%;color: white;padding-left: 200px;font-size: 35px;font-family: 'Arial Rounded MT Bold';">
-                    Make our hub better
-                </div>
-                <div class="col-md-12" style="text-align: right;">
-                    <img src="{% static 'we/images/building.svg' %}" style="height: 60%;width: 60%;" alt="">
+    <body>
+        <section style="background-color: #ffbe66;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12" style="height: 100%;">
+                        <div class="col-md-12" style="top: 40%;font-size: 80px;font-family: 'Arial Rounded MT Bold'; ">
+                            Insight
+                        </div>
+                        <div class="col-md-6" style="top: 40%;color: white;font-size: 30px;font-family: 'Arial Rounded MT Bold';">
+                            Sustainability is about ecology, economy and equity.
+                        </div>
+                        <div class="col-md-6" style="text-align: right;">
+                            <img src="{% static 'we/images/lib_v2.svg' %}" style="height: 75%;width: 75%;" alt="">
+                        </div>
+
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+            <div style="text-align: center;width: 100%;position: absolute;bottom: 0;padding-bottom: 2%;opacity: 0.5;">
+                <i class="fa fa-angle-down fa-5x animated fadeInDown infinite"></i>
+            </div>
+        </section>
+        <section style="background-color: #8acfac;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12" style="background-color: #8acfac;height: 100%;">
+                        <div class="col-md-12" style="top: 40%;font-size: 80px;font-family: 'Arial Rounded MT Bold'; ">
+                            Brilliant
+                        </div>
+                        <div class="col-md-6" style="top: 40%;color: white;font-size: 35px;font-family: 'Arial Rounded MT Bold';">
+                            Nature provides a free lunch, but only if we control our appetites.
+                        </div>
+                        <div class="col-md-6" style="text-align: right;">
+                            <img src="{% static 'we/images/building.svg' %}" style="height: 75%;width: 75%;" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center;width: 100%;position: absolute;bottom: 0;padding-bottom: 2%;opacity: 0.5;">
+                <i class="fa fa-angle-down fa-5x animated fadeInDown infinite"></i>
+            </div>
+        </section>
+    </body>
+
+    <script src="{% static 'we/js/jquery-1.6.js' %}"></script>
+    <script src="{% static 'we/js/jquery.scrollify.js' %}"></script>
+    <script>
+        $(function() {
+            $.scrollify({
+                section : "section",
+            });
+        });
+    </script>
+    <script>
+        $.scrollify({
+		    section : "section",
+		    sectionName : "section-name",
+		    easing: "easeOutExpo",
+		    scrollSpeed: 1100,
+		    offset : 0,
+		    scrollbars: true,
+		    before:function() {},
+		    after:function() {},
+		    afterResize:function() {}
+	    });
+    </script>
+
 
 {% endblock %}
 

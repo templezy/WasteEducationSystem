@@ -1,0 +1,25 @@
+{% load staticfiles %}
+
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="{% static 'we/css/bootstrap.min.css' %}"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="{% static 'we/css/animate.css' %}"/>
+
+{% block content %}
+    <body style="background-color: black;">
+         <div class="container-fluid">
+             <form action="/we/get_feedback/" method="post">
+                 {% csrf_token %}
+                 <div class="row">
+                     <div class="col-md-12" style="padding-left: 0px;padding-right: 0px;">
+                         <textarea id="feedback_content" name="feedback_content" placeholder="We welcome your feedback, comments or questions."style="width: 100%;height: 90%;padding-top: 2%;padding-left: 2%;padding-right: 2%;resize: none;border-radius: 0px;border: 0px;" rows="30"></textarea>
+                     </div>
+                     <div class="col-md-12 navbar-fixed-bottom" style="padding-left: 0px;padding-right: 0px;">
+                         <input value="Subscribe" type="submit" class="btn btn-info" style="background-color: #ce0b1b;border: 0;border-radius: 0px;padding-top: 5%;padding-bottom: 5%;width: 100%;font-family: 'Arial Rounded MT Bold';font-size: 15px;">
+                     </div>
+                 </div>
+             </form>
+        </div>
+    </body>
+{% endblock %}

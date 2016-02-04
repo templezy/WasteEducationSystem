@@ -1,12 +1,16 @@
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
-from .models import Rubbishbin, Waste, Question, Survey, TrueFalseQuestion
+from django.views.decorators.csrf import csrf_exempt
+
+from .models import Rubbishbin, Waste, Question, Survey, TrueFalseQuestion, WhichBinQuestion, KeepInMindQuestion, Feedback
 from django.core.urlresolvers import reverse
 import random
+import datetime
 from rest_framework import viewsets
 from rest_framework.parsers import JSONParser
 from rest_framework.renderers import JSONRenderer
-from serializers import RubbishbinSerializer, QuestionSerializer, SingleQuestionSerializer, TrueFalseSingleQuestionSerializer
+from .forms import FeedbackForm
+from serializers import RubbishbinSerializer, QuestionSerializer, SingleQuestionSerializer, TrueFalseSingleQuestionSerializer, WhichBinSingleQuestionSerializer, KeepInMindSingleQuestionSerializer, FeedbackSerializer
 # Create your views here.
 
 
@@ -41,7 +45,7 @@ def choose(request, rubbishbin_id):
     return HttpResponseRedirect(reverse('we:results', args=(rubbishbin.id,)))
 
 
-# Test page
+# Learning center page
 def learningcenter(request):
     questionlist = Question.objects.all()
     return render(request, 'we/learning_center.html', {'questionlist': questionlist})
@@ -50,6 +54,15 @@ def learningcenter(request):
 # Introduction of the system page
 def ecointro(request):
     return render(request, 'we/ecointro.html')
+
+
+# CO2 calculation view
+def co2calcu(request):
+    return render(request, 'we/co2calcu.html')
+
+
+def feedback(request):
+    return render(request, 'we/feedback.html')
 
 
 def survey(request):
@@ -112,6 +125,7 @@ def question_list(request):
         return JSONResponse(serializer.errors, status=400)
 
 
+# For the survey questions
 def survey_question(request):
     if request.method == 'GET':
         question_in_survey = 4
@@ -130,6 +144,7 @@ def survey_question(request):
         return JSONResponse(serializer.data)
 
 
+# For the true false quiz
 def true_false_quiz(request):
     if request.method == 'GET':
         question_in_survey = 5
@@ -145,3 +160,64 @@ def true_false_quiz(request):
 
         serializer = TrueFalseSingleQuestionSerializer(questionlist, many=True)
         return JSONResponse(serializer.data)
+
+
+# For the which bin quiz
+def which_bin_quiz(request):
+    if request.method == 'GET':
+        question_in_survey = 5
+        questionlist_init = WhichBinQuestion.objects.all()
+        questionid_list = []
+        for single_question in questionlist_init:
+            questionid_list.append(single_question.id)
+        random.shuffle(questionid_list)
+        questionlist = []
+        for single_id in questionid_list:
+            questionlist.append(WhichBinQuestion.objects.get(id=single_id))
+        questionlist = questionlist[:question_in_survey]
+
+        serializer = WhichBinSingleQuestionSerializer(questionlist, many=True)
+        return JSONResponse(serializer.data)
+
+
+# For the keep in mind quiz
+def keep_in_mind_quiz(request):
+    if request.method == 'GET':
+        question_in_survey = 5
+        questionlist_init = KeepInMindQuestion.objects.all()
+        questionid_list = []
+        for single_question in questionlist_init:
+            questionid_list.append(single_question.id)
+        random.shuffle(questionid_list)
+        questionlist = []
+        for single_id in questionid_list:
+            questionlist.append(KeepInMindQuestion.objects.get(id=single_id))
+        questionlist = questionlist[:question_in_survey]
+
+        serializer = KeepInMindSingleQuestionSerializer(questionlist, many=True)
+        return JSONResponse(serializer.data)
+
+
+# Handle feedback content
+@csrf_exempt
+def get_feedback(request):
+    if request.method == 'POST':
+        form = FeedbackForm(request.POST)
+        client_address = request.META['HTTP_X_FORWARDED_FOR']
+        if form.is_valid():
+            Feedback.objects.create(feedback_text=datetime.datetime.now(), feedback_content=request.POST['feedback_content'])
+            return render(request, 'we/thanks.html')
+        return render(request, 'we/feedback.html')
+
+
+class JSONResponse(HttpResponse):
+    """
+    An HttpResponse that renders its content into JSON.
+    """
+    def __init__(self, data, **kwargs):
+        content = JSONRenderer().render(data)
+        kwargs['content_type'] = 'application/json'
+        super(JSONResponse, self).__init__(content, **kwargs)
+
+
+

@@ -7,11 +7,17 @@ from rest_framework import routers, serializers, viewsets
 
 app_name = 'we'
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
+    url(r'^$', views.ecointro, name='index'),
     url(r'^rubbishbin/$', views.question_list),
-    url(r'^survey_question/$', views.survey_question),
+    url(r'^multiple_choice/$', views.survey_question),
     url(r'^true_false_question/$', views.true_false_quiz),
+    url(r'^which_bin_question/$', views.which_bin_quiz),
+    url(r'^keep_in_mind_question/$', views.keep_in_mind_quiz),
     url(r'^learningcenter/$', views.learningcenter, name='learningcenter'),
+    url(r'^cdcalcu/$', views.co2calcu, name='cdcalcu'),
+    url(r'^feedback/$', views.feedback),
+    # url(r'^add_feedback/$', views.get_feedback),
+    url(r'^get_feedback/$', views.get_feedback, name='get_feedback'),
     url(r'^survey/$', views.survey, name='survey'),
     url(r'^surveyhandler/$', views.surveyhandler, name='surveyhandler'),
     url(r'^ecointro/$', views.ecointro, name='ecointro'),

@@ -1,0 +1,81 @@
+{% load staticfiles %}
+
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="{% static 'we/css/bootstrap.min.css' %}"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="{% static 'we/css/animate.css' %}"/>
+{#{% block csscontent %}#}
+{#{% endblock %}#}
+
+{% block content %}
+    <body style="background-color: black;">
+        <div class="container-fluid">
+            <div class="row" style="background-color: #07853F;padding-top: 10%;padding-bottom: 8%;">
+                <div class="col-md-12" style="text-align: center;">
+                    <label style="color: white;font-family: 'Arial Rounded MT Bold';">Please select waste type</label>
+                </div>
+                <div class="col-md-12" style="text-align: center;">
+                    <select class="form-control" onchange="cdcCalculation()" id="wastetype" style="width: 100%;">
+                        <option value="1.6">Food</option>
+                        <option value="2.5">Paper and cardboard</option>
+                        <option value="1.2">Garden and green waste</option>
+                        <option value="1.2">Wood</option>
+                        <option value="1.5">Textiles(i.e. clothing/fabric)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row" style="padding-top: 8%;padding-bottom: 8%;background-color: #D9A143;">
+                <div class="col-md-12" style="text-align: center;">
+                    <label style="color: white;font-family: 'Arial Rounded MT Bold';">Weight of the waste (kg)</label>
+                </div>
+                <div class="col-md-12" style="text-align: center;">
+                    <input class="form-control" onchange="cdcCalculation()" id="wasteweight" style="width: 100%;">
+                </div>
+            </div>
+            <div class="row" style="background-color: #56c0e0;padding-top: 8%;padding-bottom: 8%;text-align: center;color: white;font-family: 'Arial Rounded MT Bold';">
+                <div class="col-md-12">
+                    <label style="color: white;font-family: 'Arial Rounded MT Bold';">Emissions of CO2 (kg)</label>
+                </div>
+                <div class="col-md-12" style="text-align: center;">
+                    <span id="result" style="font-size: 25px;">0.0</span>
+                </div>
+            </div>
+            <div class="row" style="background-color: #63218E;padding-top: 8%;padding-bottom: 8%;text-align: center;color: white;font-family: 'Arial Rounded MT Bold';">
+                <div class="col-md-12">
+                    <label style="color: white;font-family: 'Arial Rounded MT Bold';">Equivalent days of electricity consumption for one household</label>
+                </div>
+                <div class="col-md-12" style="text-align: center;">
+                    <span id="days" style="font-size: 25px;">0 day</span>
+                </div>
+            </div>
+            <div class="row" style="background-color: #A01C38;padding-top: 8%;padding-bottom: 8%;text-align: center;color: white;font-family: 'Arial Rounded MT Bold';">
+                <div class="col-md-12">
+                <label style="color: white;font-family: 'Arial Rounded MT Bold';">Equivalent years of electricity consumption for one household</label>
+                </div>
+                <div class="col-md-12" style="text-align: center;">
+                    <span id="years" style="font-size: 25px;">0 year</span>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <script src="{% static 'we/js/jquery-1.6.js' %}"></script>
+    <script>
+        function cdcCalculation(){
+            var currentWaste = $("#wastetype option:selected").val()
+            var wasteWeight = $("#wasteweight").val()
+
+            var totalCO2 = currentWaste * wasteWeight
+            $("#result").text(totalCO2.toFixed(3))
+            var days = totalCO2.toFixed(3)/11.45
+            if(days.toFixed(0)==1){
+                $("#days").text(days.toFixed(0)+" day")
+            }else{
+                $("#days").text(days.toFixed(0)+" days")
+            }
+            $("#years").text((days/365).toFixed(2)+" year")
+        }
+    </script>
+{% endblock %}
+
