@@ -91,6 +91,11 @@ class YesNoViewController: UIViewController, NetProtocol {
         
     }
     
+    override func viewDidAppear(animated: Bool) {
+        print("*****"+String(questionData.count)+"*******")
+    }
+    
+    
     // Update the realted elements when question changed
     
     func updateQuestion(){
@@ -191,8 +196,8 @@ class YesNoViewController: UIViewController, NetProtocol {
             (data, response, error) in print(NSString(data: data!, encoding: NSUTF8StringEncoding)!)
             
             if (data != nil){
-                let test = NSString(data: data!, encoding: NSASCIIStringEncoding)!
-                let jsonData: NSData = test.dataUsingEncoding(NSASCIIStringEncoding)!
+                let test = NSString(data: data!, encoding: NSUTF8StringEncoding)!
+                let jsonData: NSData = test.dataUsingEncoding(NSUTF8StringEncoding)!
                 
                 do {
                     let json: AnyObject? = try NSJSONSerialization.JSONObjectWithData(jsonData, options: [])

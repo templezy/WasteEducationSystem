@@ -22,14 +22,12 @@ class SurveyViewController: UIViewController {
     @IBOutlet weak var aButton: UIButton!
     @IBOutlet weak var bButton: UIButton!
     @IBOutlet weak var cButton: UIButton!
-    @IBOutlet weak var dButton: UIButton!
     
     @IBOutlet weak var aLabel: UILabel!
     @IBOutlet weak var bLabel: UILabel!
     @IBOutlet weak var cLabel: UILabel!
-    @IBOutlet weak var dLabel: UILabel!
     
-    @IBOutlet weak var questionDescription: UILabel!
+    @IBOutlet weak var questionDescirption: UITextView!
     @IBOutlet weak var scoreLabel: UILabel!
     
     var buttonTag = false
@@ -67,11 +65,7 @@ class SurveyViewController: UIViewController {
             //Make the all the label fade out
             
             UIView.animateWithDuration(0.5, animations: {
-                self.questionDescription.alpha = 0.0
-                self.aLabel.alpha = 0.0
-                self.bLabel.alpha = 0.0
-                self.cLabel.alpha = 0.0
-                self.dLabel.alpha = 0.0
+//                self.questionDescirption.alpha = 0.0
             })
             
             //Update the description for each option
@@ -79,17 +73,12 @@ class SurveyViewController: UIViewController {
             aButton.setTitle(surveyData[currentQuestion].first_desc, forState: .Normal)
             bButton.setTitle(surveyData[currentQuestion].second_desc, forState: .Normal)
             cButton.setTitle(surveyData[currentQuestion].third_desc, forState: .Normal)
-            dButton.setTitle(surveyData[currentQuestion].fourth_desc, forState: .Normal)
             
-            questionDescription.text = surveyData[currentQuestion].question_desc
+            questionDescirption.text = surveyData[currentQuestion].question_desc
             
             //Change the text and make all label fade in
             UIView.animateWithDuration(0.5, animations: {
-                self.questionDescription.alpha = 1.0
-                self.aLabel.alpha = 1.0
-                self.bLabel.alpha = 1.0
-                self.cLabel.alpha = 1.0
-                self.dLabel.alpha = 1.0
+//                self.questionDescirption.alpha = 1.0
             })
         }
     }
@@ -147,14 +136,6 @@ class SurveyViewController: UIViewController {
     }
     
     
-    @IBAction func dButtonEvent(sender: AnyObject) {
-        if(userAnswer.count < surveyData.count){
-            userAnswer.append("D")
-            updateScore()
-        }
-        buttonEventCheck()
-    }
-
     /*
     // MARK: - Navigation
 
