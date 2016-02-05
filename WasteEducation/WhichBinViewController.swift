@@ -71,17 +71,10 @@ class WhichBinViewController: UIViewController, NetProtocol {
         wasteItemDescrption.font = UIFont(name: Theme.globalFont, size: 18)
         
         
-        wasteRed = Theme.normalRed
-        wasteGreen = Theme.normalGreen
-        wasteYellow = Theme.normalYellow
-        wasteBlue = Theme.normalBlue
-        
-        if Settings.blindMode {
-            wasteRed = Theme.cblindModeRed
-            wasteBlue = Theme.cblindModeBlue
-            wasteGreen = Theme.cblindModeGreen
-            wasteYellow = Theme.cblindModeYellow
-        }
+        wasteRed = Theme.cblindModeRed
+        wasteBlue = Theme.cblindModeBlue
+        wasteGreen = Theme.cblindModeGreen
+        wasteYellow = Theme.cblindModeYellow
         
         self.view.addSubview(leftArea)
         self.view.addSubview(rightArea)
