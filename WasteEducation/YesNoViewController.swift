@@ -37,6 +37,11 @@ class YesNoViewController: UIViewController, NetProtocol {
         // Do any additional setup after loading the view.
     }
     
+    
+    override func viewDidAppear(animated: Bool) {
+        UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: .Fade)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -90,11 +95,6 @@ class YesNoViewController: UIViewController, NetProtocol {
         self.view.addSubview(questionDescription)
         
     }
-    
-    override func viewDidAppear(animated: Bool) {
-        print("*****"+String(questionData.count)+"*******")
-    }
-    
     
     // Update the realted elements when question changed
     

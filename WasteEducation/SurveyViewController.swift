@@ -44,7 +44,11 @@ class SurveyViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
-
+    
+    override func viewDidAppear(animated: Bool) {
+        UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: .Fade)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -62,12 +66,6 @@ class SurveyViewController: UIViewController {
         
         if(surveyData.count > 0){
             
-            //Make the all the label fade out
-            
-            UIView.animateWithDuration(0.5, animations: {
-//                self.questionDescirption.alpha = 0.0
-            })
-            
             //Update the description for each option
             
             aButton.setTitle(surveyData[currentQuestion].first_desc, forState: .Normal)
@@ -76,10 +74,6 @@ class SurveyViewController: UIViewController {
             
             questionDescirption.text = surveyData[currentQuestion].question_desc
             
-            //Change the text and make all label fade in
-            UIView.animateWithDuration(0.5, animations: {
-//                self.questionDescirption.alpha = 1.0
-            })
         }
     }
     
@@ -162,7 +156,7 @@ class SurveyViewController: UIViewController {
             
             if (data != nil){
                 let test = NSString(data: data!, encoding: NSUTF8StringEncoding)!
-                let jsonData:NSData = test.dataUsingEncoding(NSASCIIStringEncoding)!
+                let jsonData:NSData = test.dataUsingEncoding(NSUTF8StringEncoding)!
                 
                 do {
                     let json: AnyObject? = try NSJSONSerialization.JSONObjectWithData(jsonData, options: [])
@@ -262,5 +256,9 @@ class SurveyViewController: UIViewController {
         
     }
     
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
 
 }

@@ -49,7 +49,11 @@ class WhichBinViewController: UIViewController, NetProtocol {
         initUI()
         // Do any additional setup after loading the view.
     }
-
+    
+    override func viewDidAppear(animated: Bool) {
+        UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: .Fade)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -234,8 +238,8 @@ class WhichBinViewController: UIViewController, NetProtocol {
             (data, response, error) in print(NSString(data: data!, encoding: NSUTF8StringEncoding)!)
             
             if (data != nil){
-                let test = NSString(data: data!, encoding: NSASCIIStringEncoding)!
-                let jsonData:NSData = test.dataUsingEncoding(NSASCIIStringEncoding)!
+                let test = NSString(data: data!, encoding: NSUTF8StringEncoding)!
+                let jsonData:NSData = test.dataUsingEncoding(NSUTF8StringEncoding)!
                 
                 do {
                     let json: AnyObject? = try NSJSONSerialization.JSONObjectWithData(jsonData, options: [])
