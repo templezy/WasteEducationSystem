@@ -12,7 +12,7 @@ class SettingTableViewController: UITableViewController {
     
     // MARK: Properties
     
-    var itemList = ["Notifications"]
+    var itemList = ["Sound Effect","Notifications"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +62,7 @@ class SettingTableViewController: UITableViewController {
         
         let enabledSwitch = UISwitch(frame: CGRectZero) as UISwitch
         enabledSwitch.on = true
-//        enabledSwitch.addTarget(self, action: Selector("stateChanged:"), forControlEvents: .ValueChanged)
+        enabledSwitch.addTarget(self, action: Selector("stateChanged:"), forControlEvents: .ValueChanged)
         cell.accessoryView = enabledSwitch
         // Configure the cell...
 
@@ -70,19 +70,19 @@ class SettingTableViewController: UITableViewController {
     }
     
     
-//    func stateChanged(switchState: UISwitch){
-//        if switchState.on {
-//            if Debug.debug_mode {
-//                print("ON")
-//            }
-//            Settings.blindMode = true
-//        }else {
-//            if Debug.debug_mode {
-//                print("OFF")
-//            }
-//            Settings.blindMode = false
-//        }
-//    }
+    func stateChanged(switchState: UISwitch){
+        if switchState.on {
+            if Debug.debug_mode {
+                print("ON")
+            }
+            Settings.soundEffect = true
+        }else {
+            if Debug.debug_mode {
+                print("OFF")
+            }
+            Settings.soundEffect = false
+        }
+    }
     
     
     /*

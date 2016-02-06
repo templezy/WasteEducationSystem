@@ -42,4 +42,11 @@ struct Theme {
 //MARK: Settings
 struct Settings {
     static var blindMode = false
+    static var soundEffect = true
+}
+
+//MARK: Sound
+struct GameSound {
+    static var correctAudio = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("true", ofType: "wav")!)
+    static var incorrectAudio = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("false", ofType: "wav")!)
 }

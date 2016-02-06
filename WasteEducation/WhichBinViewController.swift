@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreMotion
+import AVFoundation
 
 class WhichBinViewController: UIViewController, NetProtocol {
     
@@ -24,6 +25,7 @@ class WhichBinViewController: UIViewController, NetProtocol {
     
     var userScore = 0
     
+    var audioPlayer: AVAudioPlayer!
     // Used for shake event
     
     var motionManager: CMMotionManager!
@@ -87,6 +89,17 @@ class WhichBinViewController: UIViewController, NetProtocol {
         self.view.addSubview(wasteImageView)
         self.view.addSubview(wasteItemDescrption)
 
+    }
+    
+    func playSound(resourceFile: NSURL){
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
+            audioPlayer = try AVAudioPlayer(contentsOfURL: resourceFile)
+            audioPlayer.play()
+        } catch {
+            
+        }
     }
     
     // MARK: Update the content and UI
@@ -308,6 +321,7 @@ class WhichBinViewController: UIViewController, NetProtocol {
                 
                 if data!.acceleration.x < 0 {
                     if(self.leftColor == self.questionData[self.currentQuestion].question_choice){
+                        self.playSound(GameSound.correctAudio)
                         if(self.currentQuestion+1 < self.questionData.count){
                             self.userScore += self.questionData[self.currentQuestion].question_score
                             self.scoreLabel.text = String(self.userScore)
@@ -316,9 +330,12 @@ class WhichBinViewController: UIViewController, NetProtocol {
                         if(self.currentQuestion != self.questionData.count-1){
                             self.updateQuestion()
                         }
+                    }else{
+                        self.playSound(GameSound.incorrectAudio)
                     }
                 }else if(data!.acceleration.x > 0){
                     if(self.rightColor == self.questionData[self.currentQuestion].question_choice){
+                        self.playSound(GameSound.correctAudio)
                         if(self.currentQuestion+1 < self.questionData.count){
                             self.userScore += self.questionData[self.currentQuestion].question_score
                             self.scoreLabel.text = String(self.userScore)
@@ -327,6 +344,8 @@ class WhichBinViewController: UIViewController, NetProtocol {
                         if(self.currentQuestion != self.questionData.count-1){
                             self.updateQuestion()
                         }
+                    }else{
+                        self.playSound(GameSound.incorrectAudio)
                     }
                 }
                     

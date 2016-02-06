@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class SurveyViewController: UIViewController {
     
@@ -30,6 +31,7 @@ class SurveyViewController: UIViewController {
     @IBOutlet weak var questionDescirption: UITextView!
     @IBOutlet weak var scoreLabel: UILabel!
     
+    var audioPlayer: AVAudioPlayer!
     var buttonTag = false
     var currentQuestion = 0
     
@@ -77,11 +79,24 @@ class SurveyViewController: UIViewController {
         }
     }
     
+    func playSound(resourceFile: NSURL){
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
+            audioPlayer = try AVAudioPlayer(contentsOfURL: resourceFile)
+            audioPlayer.play()
+        } catch {
+            
+        }
+    }
     
     func updateScore(){
         
         if(userAnswer[currentQuestion] == surveyData[currentQuestion].choice){
             userScore += surveyData[currentQuestion].score
+            playSound(GameSound.correctAudio)
+        }else{
+            playSound(GameSound.incorrectAudio)
         }
         self.scoreLabel.text = String(userScore)
         

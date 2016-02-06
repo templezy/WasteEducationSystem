@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class YesNoViewController: UIViewController, NetProtocol {
     
@@ -22,6 +23,7 @@ class YesNoViewController: UIViewController, NetProtocol {
     var buttonTag = false
     var userScore = 0
     
+    var audioPlayer: AVAudioPlayer!
     
     @IBOutlet weak var scoreLabel: UILabel!
     
@@ -148,6 +150,19 @@ class YesNoViewController: UIViewController, NetProtocol {
         }
     }
     
+    
+    func playSound(resourceFile: NSURL){
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
+            audioPlayer = try AVAudioPlayer(contentsOfURL: resourceFile)
+            audioPlayer.play()
+        } catch {
+            
+        }
+    }
+    
+    
     // Handling the click event
     
     func buttonEvent(sender: UIButton){
@@ -157,15 +172,27 @@ class YesNoViewController: UIViewController, NetProtocol {
             if(sender.tag == 89757){
                 if(questionData[currentQuestion].question_choice == "TRUE"){
                     userScore += questionData[currentQuestion].question_score
+                    if Settings.soundEffect {
+                        playSound(GameSound.correctAudio)
+                    }
                 }else{
+                    if Settings.soundEffect {
+                        playSound(GameSound.incorrectAudio)
+                    }
                     let reasonController = UIAlertController(title: "Why you wrong?", message: questionData[currentQuestion].question_reason, preferredStyle: UIAlertControllerStyle.Alert)
                     reasonController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
                     self.presentViewController(reasonController, animated: true, completion: nil)
                 }
             }else if(sender.tag == 89758){
                 if(questionData[currentQuestion].question_choice == "FALSE"){
+                    if Settings.soundEffect {
+                        playSound(GameSound.correctAudio)
+                    }
                     userScore += questionData[currentQuestion].question_score
                 }else{
+                    if Settings.soundEffect {
+                        playSound(GameSound.incorrectAudio)
+                    }
                     let reasonController = UIAlertController(title: "Why you wrong?", message: questionData[currentQuestion].question_reason, preferredStyle: UIAlertControllerStyle.Alert)
                     reasonController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
                     self.presentViewController(reasonController, animated: true, completion: nil)

@@ -21,6 +21,10 @@
 		6377E2711C3B31C900425504 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6377E2701C3B31C900425504 /* Question.swift */; };
 		63861CA81C51AD8D0016BB91 /* WhichBinQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63861CA71C51AD8D0016BB91 /* WhichBinQuestion.swift */; };
 		63861CAA1C51B11E0016BB91 /* KeepInMindQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63861CA91C51B11E0016BB91 /* KeepInMindQuestion.swift */; };
+		6386CC271C65D2E800439037 /* true.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6386CC261C65D2E800439037 /* true.mp3 */; };
+		6386CC291C65D2EF00439037 /* false.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6386CC281C65D2EF00439037 /* false.mp3 */; };
+		6386CC2B1C65D5D800439037 /* true.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6386CC2A1C65D5D800439037 /* true.wav */; };
+		6386CC2D1C65D5FC00439037 /* false.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6386CC2C1C65D5FC00439037 /* false.wav */; };
 		63B5E3E11C58387D0043CF75 /* CDCalcuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B5E3E01C58387D0043CF75 /* CDCalcuViewController.swift */; };
 		63B7E74F1C58767B009C6CFD /* SurveyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B7E74E1C58767B009C6CFD /* SurveyPageViewController.swift */; };
 		63BAEF5A1C585350004BD9C0 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63BAEF561C585350004BD9C0 /* FBSDKCoreKit.framework */; };
@@ -68,6 +72,10 @@
 		6377E2701C3B31C900425504 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		63861CA71C51AD8D0016BB91 /* WhichBinQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhichBinQuestion.swift; sourceTree = "<group>"; };
 		63861CA91C51B11E0016BB91 /* KeepInMindQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeepInMindQuestion.swift; sourceTree = "<group>"; };
+		6386CC261C65D2E800439037 /* true.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = true.mp3; sourceTree = "<group>"; };
+		6386CC281C65D2EF00439037 /* false.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = false.mp3; sourceTree = "<group>"; };
+		6386CC2A1C65D5D800439037 /* true.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = true.wav; sourceTree = "<group>"; };
+		6386CC2C1C65D5FC00439037 /* false.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = false.wav; sourceTree = "<group>"; };
 		63B5E3E01C58387D0043CF75 /* CDCalcuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDCalcuViewController.swift; sourceTree = "<group>"; };
 		63B5E3E91C5850870043CF75 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		63B7E74E1C58767B009C6CFD /* SurveyPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyPageViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +139,17 @@
 			name = MoreView;
 			sourceTree = "<group>";
 		};
+		6386CC251C65D2CC00439037 /* Audio_resource */ = {
+			isa = PBXGroup;
+			children = (
+				6386CC281C65D2EF00439037 /* false.mp3 */,
+				6386CC2A1C65D5D800439037 /* true.wav */,
+				6386CC2C1C65D5FC00439037 /* false.wav */,
+				6386CC261C65D2E800439037 /* true.mp3 */,
+			);
+			name = Audio_resource;
+			sourceTree = "<group>";
+		};
 		63C4575A1C2FDB6500F704B1 = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +176,7 @@
 		63C457651C2FDB6500F704B1 /* WasteEducation */ = {
 			isa = PBXGroup;
 			children = (
+				6386CC251C65D2CC00439037 /* Audio_resource */,
 				6306567E1C6160C30096084E /* MoreView */,
 				63D094EA1C47318000E970DE /* MainController */,
 				63D094E71C44A7C100E970DE /* GameView */,
@@ -316,9 +336,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6386CC2B1C65D5D800439037 /* true.wav in Resources */,
 				63C457731C2FDB6500F704B1 /* LaunchScreen.storyboard in Resources */,
 				63C457701C2FDB6500F704B1 /* Assets.xcassets in Resources */,
+				6386CC271C65D2E800439037 /* true.mp3 in Resources */,
+				6386CC2D1C65D5FC00439037 /* false.wav in Resources */,
 				63C4576E1C2FDB6500F704B1 /* Main.storyboard in Resources */,
+				6386CC291C65D2EF00439037 /* false.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
