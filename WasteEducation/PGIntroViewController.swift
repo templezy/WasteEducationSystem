@@ -1,24 +1,18 @@
 //
-//  SurveyPageViewController.swift
+//  PGIntroViewController.swift
 //  UOAWE
 //
-//  Created by ZhouYue on 27/01/2016.
+//  Created by ZhouYue on 12/02/2016.
 //  Copyright © 2016 ZhouYue. All rights reserved.
 //
 
 import UIKit
 
-class SurveyPageViewController: UIViewController {
-
-    @IBOutlet weak var surveyPageView: UIWebView!
+class PGIntroViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let requestURL = NSURL(string: Net.feedbackAddress)
-        let request = NSURLRequest(URL: requestURL!)
-        surveyPageView.loadRequest(request)
-        
+
         // Do any additional setup after loading the view.
     }
 
@@ -27,7 +21,7 @@ class SurveyPageViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
+
     /*
     // MARK: - Navigation
 

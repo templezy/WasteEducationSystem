@@ -21,7 +21,7 @@ class FBSocialViewController: UIViewController, FBSDKLoginButtonDelegate {
         {
             let screenSize = UIScreen.mainScreen().bounds
             let screenWidth = screenSize.width
-            let screenHeight = screenSize.height
+//            let screenHeight = screenSize.height
             
             let loginView : FBSDKLoginButton = FBSDKLoginButton()
             loginView.frame = CGRect(x: 0, y: (self.navigationController?.navigationBar.frame.height)! * 1.5, width: screenWidth, height: 50)

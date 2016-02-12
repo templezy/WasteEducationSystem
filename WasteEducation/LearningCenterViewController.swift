@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LearningCenterViewController: UIViewController {
+class LearningCenterViewController: UIViewController, UIWebViewDelegate {
    
     // MARK: Properties
     
@@ -16,7 +16,7 @@ class LearningCenterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        learningCenterView.delegate = self
         let requestURL = NSURL(string: Net.lcenterAddress)
         let request = NSURLRequest(URL: requestURL!)
         learningCenterView.loadRequest(request)
@@ -30,11 +30,16 @@ class LearningCenterViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
-    override func viewDidAppear(animated: Bool) {
-        if(Debug.debug_mode){
-            learningCenterView.reload()
+    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        if navigationType == UIWebViewNavigationType.LinkClicked {
+            if (request.URL!.host! == Net.lcenterAddress){
+                return true
+            } else {
+                UIApplication.sharedApplication().openURL(request.URL!)
+                return false
+            }
         }
+        return true
     }
     
     override func prefersStatusBarHidden() -> Bool {

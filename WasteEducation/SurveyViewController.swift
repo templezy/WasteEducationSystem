@@ -38,6 +38,8 @@ class SurveyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         initialUI()
         
         fetchData()
@@ -47,9 +49,13 @@ class SurveyViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewDidAppear(animated: Bool) {
-        UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: .Fade)
+    override func prefersStatusBarHidden() -> Bool {
+        return true;
     }
+
+//    override func viewDidAppear(animated: Bool) {
+//        UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: .Fade)
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -271,9 +277,4 @@ class SurveyViewController: UIViewController {
         
     }
     
-    
-    override func prefersStatusBarHidden() -> Bool {
-        return true
-    }
-
 }
