@@ -12,7 +12,7 @@ class MoreTableViewController: UITableViewController {
     
     // MARK: Properties
     
-    var menuSelections = ["SETTINGS", "HELP", "FEEDBACK", "FACEBOOK"]
+    var menuSelections = ["SETTINGS", "HELP", "FEEDBACK"]
     
     
     override func viewDidLoad() {

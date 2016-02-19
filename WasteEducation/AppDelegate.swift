@@ -19,14 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))  // types are UIUserNotificationType members
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let firstLaunch = NSUserDefaults.standardUserDefaults().boolForKey("FirstLaunch")
-        if firstLaunch {
-            let initialViewController = mainStoryboard.instantiateViewControllerWithIdentifier("IntroViewController") as! IntroViewController
-            self.window?.rootViewController = initialViewController
-        }else{
-            let initialViewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainController") as! SystemMainViewController
-            self.window?.rootViewController = initialViewController
-        }
+//        let firstLaunch = NSUserDefaults.standardUserDefaults().boolForKey("FirstLaunch")
+//        if firstLaunch {
+//            let initialViewController = mainStoryboard.instantiateViewControllerWithIdentifier("IntroViewController") as! IntroViewController
+//            self.window?.rootViewController = initialViewController
+//        }else{
+//            let initialViewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainController") as! SystemMainViewController
+//            self.window?.rootViewController = initialViewController
+//        }
         
         self.window?.makeKeyAndVisible()
         

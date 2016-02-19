@@ -25,6 +25,7 @@
 		6386CC291C65D2EF00439037 /* false.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6386CC281C65D2EF00439037 /* false.mp3 */; };
 		6386CC2B1C65D5D800439037 /* true.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6386CC2A1C65D5D800439037 /* true.wav */; };
 		6386CC2D1C65D5FC00439037 /* false.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6386CC2C1C65D5FC00439037 /* false.wav */; };
+		63A380C31C76980800BE2EB7 /* SecureRESTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A380C21C76980800BE2EB7 /* SecureRESTViewController.swift */; };
 		63B5E3E11C58387D0043CF75 /* CDCalcuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B5E3E01C58387D0043CF75 /* CDCalcuViewController.swift */; };
 		63B7E74F1C58767B009C6CFD /* SurveyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B7E74E1C58767B009C6CFD /* SurveyPageViewController.swift */; };
 		63BAEF5A1C585350004BD9C0 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63BAEF561C585350004BD9C0 /* FBSDKCoreKit.framework */; };
@@ -81,6 +82,7 @@
 		6386CC281C65D2EF00439037 /* false.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = false.mp3; sourceTree = "<group>"; };
 		6386CC2A1C65D5D800439037 /* true.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = true.wav; sourceTree = "<group>"; };
 		6386CC2C1C65D5FC00439037 /* false.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = false.wav; sourceTree = "<group>"; };
+		63A380C21C76980800BE2EB7 /* SecureRESTViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureRESTViewController.swift; sourceTree = "<group>"; };
 		63B5E3E01C58387D0043CF75 /* CDCalcuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDCalcuViewController.swift; sourceTree = "<group>"; };
 		63B5E3E91C5850870043CF75 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		63B7E74E1C58767B009C6CFD /* SurveyPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyPageViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +162,14 @@
 			name = Audio_resource;
 			sourceTree = "<group>";
 		};
+		63A380C11C7697E700BE2EB7 /* TestModule */ = {
+			isa = PBXGroup;
+			children = (
+				63A380C21C76980800BE2EB7 /* SecureRESTViewController.swift */,
+			);
+			name = TestModule;
+			sourceTree = "<group>";
+		};
 		63C4575A1C2FDB6500F704B1 = {
 			isa = PBXGroup;
 			children = (
@@ -186,6 +196,7 @@
 		63C457651C2FDB6500F704B1 /* WasteEducation */ = {
 			isa = PBXGroup;
 			children = (
+				63A380C11C7697E700BE2EB7 /* TestModule */,
 				63FAF0011C6D599D00033E95 /* Guidance */,
 				6386CC251C65D2CC00439037 /* Audio_resource */,
 				6306567E1C6160C30096084E /* MoreView */,
@@ -412,6 +423,7 @@
 				63C457671C2FDB6500F704B1 /* AppDelegate.swift in Sources */,
 				630656841C6190F60096084E /* AboutUsViewController.swift in Sources */,
 				63FAF0071C6D59FD00033E95 /* COIntroViewController.swift in Sources */,
+				63A380C31C76980800BE2EB7 /* SecureRESTViewController.swift in Sources */,
 				63D094E91C44A7F700E970DE /* TrueFalseQuestion.swift in Sources */,
 				63FAF0051C6D59E400033E95 /* PGIntroViewController.swift in Sources */,
 			);
