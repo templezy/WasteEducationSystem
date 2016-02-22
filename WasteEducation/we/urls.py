@@ -1,4 +1,5 @@
 from django.conf.urls import url, include
+from rest_framework.authtoken import views
 
 from . import views
 from .models import Question, Rubbishbin
@@ -16,7 +17,6 @@ urlpatterns = [
     url(r'^learningcenter/$', views.learningcenter, name='learningcenter'),
     url(r'^cdcalcu/$', views.co2calcu, name='cdcalcu'),
     url(r'^feedback/$', views.feedback),
-    # url(r'^add_feedback/$', views.get_feedback),
     url(r'^get_feedback/$', views.get_feedback, name='get_feedback'),
     url(r'^survey/$', views.survey, name='survey'),
     url(r'^surveyhandler/$', views.surveyhandler, name='surveyhandler'),
@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^(?P<rubbishbin_id>[0-9]+)/$', views.detail, name='detail'),
     url(r'^(?P<rubbishbin_id>[0-9]+)/results/$', views.results, name='results'),
     url(r'^(?P<rubbishbin_id>[0-9]+)/choose/$', views.choose, name='choose'),
+    url(r'^example/$', views.example_view, name='example'),
 ]

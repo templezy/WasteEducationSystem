@@ -10,26 +10,31 @@ from rest_framework import viewsets
 from rest_framework.parsers import JSONParser
 from rest_framework.renderers import JSONRenderer
 from .forms import FeedbackForm
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
+from rest_framework.response import Response
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from serializers import RubbishbinSerializer, QuestionSerializer, SingleQuestionSerializer, TrueFalseSingleQuestionSerializer, WhichBinSingleQuestionSerializer, KeepInMindSingleQuestionSerializer, FeedbackSerializer
 # Create your views here.
 
 
+# Test - Delete
 def index(request):
     latest_rubbishbin_list = Rubbishbin.objects.order_by('bname_text')[:5]
     context = {'latest_rubbishbin_list': latest_rubbishbin_list }
     return render(request, 'we/index.html', context)
 
-
+# Test - Delete
 def detail(request, rubbishbin_id):
     rubbishbin = get_object_or_404(Rubbishbin, pk=rubbishbin_id)
     return render(request, 'we/detail.html', {'rubbishbin': rubbishbin})
 
-
+# Test - Delete
 def results(request, rubbishbin_id):
     rubbishbin = get_object_or_404(Rubbishbin, pk=rubbishbin_id)
     return render(request, "we/results.html", {'rubbishbin': rubbishbin})
 
-
+# Test - Delete
 def choose(request, rubbishbin_id):
     rubbishbin = get_object_or_404(Rubbishbin, pk=rubbishbin_id)
     try:
@@ -60,11 +65,12 @@ def ecointro(request):
 def co2calcu(request):
     return render(request, 'we/co2calcu.html')
 
-
+# Feedback view
 def feedback(request):
     return render(request, 'we/feedback.html')
 
 
+# Test - Delete
 def survey(request):
     # How many questions in each survey
     question_in_survey = 4
@@ -82,7 +88,7 @@ def survey(request):
     questionlist_count = question_in_survey+1
     return render(request, 'we/survey.html', {'questionlist': questionlist, 'questionlist_count': questionlist_count})
 
-
+# Test - Delete
 def testresult(request):
     return render(request, 'we/testresult.html')
 
@@ -99,11 +105,13 @@ def surveyhandler(request):
     return render(request, 'we/testresult.html', {'score': score})
 
 
+# Test - Delete
 class RubbishbinViewSet(viewsets.ModelViewSet):
     queryset = Rubbishbin.objects.all()
     serializer_class = RubbishbinSerializer
 
 
+# Test - Delete
 class JSONResponse(HttpResponse):
     def __init__(self, data, **kwargs):
         content = JSONRenderer().render(data)
@@ -111,6 +119,7 @@ class JSONResponse(HttpResponse):
         super(JSONResponse, self).__init__(content, **kwargs)
 
 
+# Test - Delete
 def question_list(request):
     if request.method == 'GET':
         temp_question = Rubbishbin.objects.all()
@@ -126,6 +135,9 @@ def question_list(request):
 
 
 # For the survey questions
+@api_view(['GET'])
+@authentication_classes((TokenAuthentication,))
+@permission_classes((IsAuthenticated,))
 def survey_question(request):
     if request.method == 'GET':
         question_in_survey = 4
@@ -145,7 +157,13 @@ def survey_question(request):
 
 
 # For the true false quiz
+@api_view(['GET'])
+@authentication_classes((TokenAuthentication,))
+@permission_classes((IsAuthenticated,))
 def true_false_quiz(request):
+
+    permission_classes = (IsAuthenticated,)
+
     if request.method == 'GET':
         question_in_survey = 5
         questionlist_init = TrueFalseQuestion.objects.all()
@@ -163,6 +181,9 @@ def true_false_quiz(request):
 
 
 # For the which bin quiz
+@api_view(['GET'])
+@authentication_classes((TokenAuthentication,))
+@permission_classes((IsAuthenticated,))
 def which_bin_quiz(request):
     if request.method == 'GET':
         question_in_survey = 5
@@ -181,6 +202,9 @@ def which_bin_quiz(request):
 
 
 # For the keep in mind quiz
+@api_view(['GET'])
+@authentication_classes((TokenAuthentication,))
+@permission_classes((IsAuthenticated,))
 def keep_in_mind_quiz(request):
     if request.method == 'GET':
         question_in_survey = 5
@@ -210,14 +234,13 @@ def get_feedback(request):
         return render(request, 'we/feedback.html')
 
 
-class JSONResponse(HttpResponse):
-    """
-    An HttpResponse that renders its content into JSON.
-    """
-    def __init__(self, data, **kwargs):
-        content = JSONRenderer().render(data)
-        kwargs['content_type'] = 'application/json'
-        super(JSONResponse, self).__init__(content, **kwargs)
-
-
+@api_view(['GET'])
+@authentication_classes((SessionAuthentication, BasicAuthentication))
+@permission_classes((IsAuthenticated,))
+def example_view(request, format=None):
+    content = {
+        'user': unicode(request.user),  # `django.contrib.auth.User` instance.
+        'auth': unicode(request.auth),  # None
+    }
+    return Response(content)
 

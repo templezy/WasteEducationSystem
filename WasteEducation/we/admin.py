@@ -9,7 +9,7 @@ from .models import Rubbishbin, Waste, Survey, Question, TrueFalseQuestion, Whic
 admin.site.register(Question)
 admin.site.register(TrueFalseQuestion)
 admin.site.register(WhichBinQuestion)
-admin.site.register(KeepInMindQuestion)
+# admin.site.register(KeepInMindQuestion)
 admin.site.register(Feedback)
 
 

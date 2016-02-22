@@ -8,12 +8,52 @@
 {#{% block csscontent %}#}
 {#{% endblock %}#}
 
+<style>
+    .sec-header{
+        text-align: center;
+        background-color: grey;
+        color: white;
+        padding-top: 8%;
+        padding-bottom: 8%;
+    }
+</style>
+
 {% block content %}
     <body style="background-color: black;">
+    <section style="background-color: white;">
         <div class="container-fluid">
-            <div class="row" style="background-color: #07853F;padding-top: 10%;padding-bottom: 8%;">
+            <div class="row">
+                <div class="col-md-12" style="padding: 0px;">
+                    <div class="sec-header">
+                        Calculate Emissions from Waste
+                    </div>
+                </div>
+                <div class="col-md-12" style="padding-top: 6%;">
+                    Australians generate more than 8 million tonnes of food waste annually and most of it ends up in landfill.
+                </div>
+                <div class="col-md-12" style="padding-top: 6%;">
+                    Once in the ground, food breaks down slowly dur to lack of oxygen and emits potent greenhouse gases.
+                </div>
+                <div class="col-md-12" style="color: red;padding-top: 6%;">
+                    How does this compares to the emissions produced by the average household through electricity use?
+                </div>
+                <div class="col-md-12" style="padding-top: 6%;">
+                    Use our calculator to fond out.
+                </div>
+                <div class="col-md-12" style="text-align: center;padding-top: 6%;">
+                    <img src="{% static 'we/images/calculator.jpg' %}" alt="" style="height: 200px;">
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center;width: 100%;position: absolute;bottom: 0;padding-bottom: 2%;opacity: 0.5;">
+            <i class="fa fa-angle-down fa-5x animated fadeInDown infinite"></i>
+        </div>
+    </section>
+    <section>
+        <div class="container-fluid">
+            <div class="row" style="background-color: #07853F;padding-top: 14%;padding-bottom: 12%;">
                 <div class="col-md-12" style="text-align: center;">
-                    <label style="color: white;font-family: 'Arial Rounded MT Bold';">Please select waste type</label>
+                    <label style="color: white;font-family: 'Arial Rounded MT Bold';">Select waste type</label>
                 </div>
                 <div class="col-md-12" style="text-align: center;">
                     <select class="form-control" onchange="cdcCalculation()" id="wastetype" style="width: 100%;">
@@ -25,23 +65,23 @@
                     </select>
                 </div>
             </div>
-            <div class="row" style="padding-top: 8%;padding-bottom: 8%;background-color: #D9A143;">
+            <div class="row" style="padding-top: 12%;padding-bottom: 12%;background-color: #ffff02;color: black;">
                 <div class="col-md-12" style="text-align: center;">
-                    <label style="color: white;font-family: 'Arial Rounded MT Bold';">Weight of the waste (kg)</label>
+                    <label style="color: black;font-family: 'Arial Rounded MT Bold';">Weight of the waste (kg)</label>
                 </div>
                 <div class="col-md-12" style="text-align: center;">
                     <input class="form-control" onchange="cdcCalculation()" id="wasteweight" style="width: 100%;">
                 </div>
             </div>
-            <div class="row" style="background-color: #56c0e0;padding-top: 8%;padding-bottom: 8%;text-align: center;color: white;font-family: 'Arial Rounded MT Bold';">
+            <div class="row" style="background-color: #0000ff;padding-top: 12%;padding-bottom: 12%;text-align: center;color: white;font-family: 'Arial Rounded MT Bold';">
                 <div class="col-md-12">
-                    <label style="color: white;font-family: 'Arial Rounded MT Bold';">Emissions of CO2 (kg)</label>
+                    <label style="color: white;font-family: 'Arial Rounded MT Bold';">Emissions of CO2-e (kg) produced in landfill</label>
                 </div>
                 <div class="col-md-12" style="text-align: center;">
                     <span id="result" style="font-size: 25px;">0.0</span>
                 </div>
             </div>
-            <div class="row" style="background-color: #63218E;padding-top: 8%;padding-bottom: 8%;text-align: center;color: white;font-family: 'Arial Rounded MT Bold';">
+            <div class="row" style="background-color: #ff0000;padding-top: 12%;padding-bottom: 12%;text-align: center;color: white;font-family: 'Arial Rounded MT Bold';">
                 <div class="col-md-12">
                     <label style="color: white;font-family: 'Arial Rounded MT Bold';">Equivalent days of electricity consumption for one household</label>
                 </div>
@@ -49,19 +89,32 @@
                     <span id="days" style="font-size: 25px;">0 day</span>
                 </div>
             </div>
-            <div class="row" style="background-color: #A01C38;padding-top: 8%;padding-bottom: 8%;text-align: center;color: white;font-family: 'Arial Rounded MT Bold';">
-                <div class="col-md-12">
-                <label style="color: white;font-family: 'Arial Rounded MT Bold';">Equivalent years of electricity consumption for one household</label>
-                </div>
-                <div class="col-md-12" style="text-align: center;">
-                    <span id="years" style="font-size: 25px;">0 year</span>
-                </div>
-            </div>
         </div>
+    </section>
+
+
     </body>
 
     <script src="{% static 'we/js/jquery-1.6.js' %}"></script>
+    <script src="{% static 'we/js/jquery.scrollify.js' %}"></script>
     <script>
+        $(function() {
+            $.scrollify({
+                section : "section",
+            });
+        });
+        $.scrollify({
+            section : "section",
+            sectionName : "section-name",
+            easing: "easeOutExpo",
+            scrollSpeed: 1100,
+            offset : 0,
+            scrollbars: true,
+            before:function() {},
+            after:function() {},
+            afterResize:function() {}
+        });
+
         function cdcCalculation(){
             var currentWaste = $("#wastetype option:selected").val()
             var wasteWeight = $("#wasteweight").val()
@@ -74,7 +127,6 @@
             }else{
                 $("#days").text(days.toFixed(0)+" days")
             }
-            $("#years").text((days/365).toFixed(2)+" year")
         }
     </script>
 {% endblock %}

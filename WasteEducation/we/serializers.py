@@ -1,14 +1,15 @@
 from .models import Rubbishbin, Question, TrueFalseQuestion, WhichBinQuestion, KeepInMindQuestion, Feedback
 from rest_framework import serializers
+# This class is used for serialized the models in the project
 
-
+# Test - Delete
 class RubbishbinSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Rubbishbin
         fields = ('bname_text',)
 
-
+# Test - Delete
 class QuestionSerializer(serializers.Serializer):
 
     bname_text = serializers.CharField()
@@ -21,7 +22,7 @@ class QuestionSerializer(serializers.Serializer):
         instance.save()
         return instance
 
-
+# Multiple choices serialization
 class SingleQuestionSerializer(serializers.Serializer):
 
     question_text = serializers.CharField()
@@ -57,6 +58,7 @@ class SingleQuestionSerializer(serializers.Serializer):
         return instance
 
 
+# True false serialization
 class TrueFalseSingleQuestionSerializer(serializers.Serializer):
 
     question_text = serializers.CharField()
@@ -79,7 +81,7 @@ class TrueFalseSingleQuestionSerializer(serializers.Serializer):
         instance.save()
         return instance
 
-
+# Shake bin serialization
 class WhichBinSingleQuestionSerializer(serializers.Serializer):
 
     question_text = serializers.CharField()
@@ -103,6 +105,7 @@ class WhichBinSingleQuestionSerializer(serializers.Serializer):
         return instance
 
 
+# Brain Storm serialization
 class KeepInMindSingleQuestionSerializer(serializers.Serializer):
 
     question_text = serializers.CharField()
@@ -124,6 +127,7 @@ class KeepInMindSingleQuestionSerializer(serializers.Serializer):
         return instance
 
 
+# Feedback serialization
 class FeedbackSerializer(serializers.Serializer):
 
     feedback_text = serializers.CharField()

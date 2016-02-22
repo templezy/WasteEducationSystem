@@ -3,13 +3,14 @@ from django.db import models
 
 # Create your models here.
 
-
+#  Test - Delete
 class Rubbishbin(models.Model):
     bname_text = models.CharField(max_length=200)
 
     def __str__(self):
         return self.bname_text
 
+# Test - Delete
 
 class Waste(models.Model):
     rubbishbin = models.ForeignKey(Rubbishbin, on_delete=models.CASCADE)
@@ -19,6 +20,7 @@ class Waste(models.Model):
     def __str__(self):
         return self.wastename_text
 
+# Test - Delete
 
 class Survey(models.Model):
     name_text = models.CharField(max_length=200)
@@ -27,6 +29,7 @@ class Survey(models.Model):
     question_order = models.CharField(max_length=500, default="")
     question_count = models.IntegerField(default=0)
 
+# Multiple choices
 
 class Question(models.Model):
     question_text = models.CharField(max_length=200, default="")
@@ -57,6 +60,8 @@ class Question(models.Model):
     def __str__(self):
         return self.question_text
 
+# True or False
+
 
 class TrueFalseQuestion(models.Model):
     question_text = models.CharField(max_length=200, default="")
@@ -74,6 +79,8 @@ class TrueFalseQuestion(models.Model):
         return self.question_text
 
 
+# Shake bin
+
 class WhichBinQuestion(models.Model):
     question_text = models.CharField(max_length=200, default="")
     WASTE_BIN_COLOR = {
@@ -90,6 +97,7 @@ class WhichBinQuestion(models.Model):
     def __str__(self):
         return self.question_text
 
+# Brain storm
 
 class KeepInMindQuestion(models.Model):
     question_text = models.CharField(max_length=200, default="")

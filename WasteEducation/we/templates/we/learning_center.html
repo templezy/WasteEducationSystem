@@ -5,6 +5,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'we/css/bootstrap.min.css' %}"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="{% static 'we/css/animate.css' %}"/>
+
 {#{% block csscontent %}#}
 {#{% endblock %}#}
 
@@ -13,41 +14,52 @@
         font-family: "Arial Rounded MT Bold";
     }
     .info{
-background: rgba(84,176,204,1);
-background: -moz-linear-gradient(top, rgba(84,176,204,1) 0%, rgba(43,127,153,1) 100%);
-background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(84,176,204,1)), color-stop(100%, rgba(43,127,153,1)));
-background: -webkit-linear-gradient(top, rgba(84,176,204,1) 0%, rgba(43,127,153,1) 100%);
-background: -o-linear-gradient(top, rgba(84,176,204,1) 0%, rgba(43,127,153,1) 100%);
-background: -ms-linear-gradient(top, rgba(84,176,204,1) 0%, rgba(43,127,153,1) 100%);
-background: linear-gradient(to bottom, rgba(84,176,204,1) 0%, rgba(43,127,153,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#54b0cc', endColorstr='#2b7f99', GradientType=0 );
+        background: rgba(84,176,204,1);
+        background: -moz-linear-gradient(top, rgba(84,176,204,1) 0%, rgba(43,127,153,1) 100%);
+        background: -webkit-linear-gradient(top, rgba(84,176,204,1) 0%, rgba(43,127,153,1) 100%);
+        background: -o-linear-gradient(top, rgba(84,176,204,1) 0%, rgba(43,127,153,1) 100%);
+        background: -ms-linear-gradient(top, rgba(84,176,204,1) 0%, rgba(43,127,153,1) 100%);
+        background: linear-gradient(to bottom, rgba(84,176,204,1) 0%, rgba(43,127,153,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#54b0cc', endColorstr='#2b7f99', GradientType=0 );
     }
     .intro{
-background: rgba(142,194,107,1);
-background: -moz-linear-gradient(top, rgba(142,194,107,1) 0%, rgba(91,140,91,1) 100%);
-background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(142,194,107,1)), color-stop(100%, rgba(91,140,91,1)));
-background: -webkit-linear-gradient(top, rgba(142,194,107,1) 0%, rgba(91,140,91,1) 100%);
-background: -o-linear-gradient(top, rgba(142,194,107,1) 0%, rgba(91,140,91,1) 100%);
-background: -ms-linear-gradient(top, rgba(142,194,107,1) 0%, rgba(91,140,91,1) 100%);
-background: linear-gradient(to bottom, rgba(142,194,107,1) 0%, rgba(91,140,91,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8ec26b', endColorstr='#5b8c5b', GradientType=0 );
+        background: rgba(142,194,107,1);
+        background: -moz-linear-gradient(top, rgba(142,194,107,1) 0%, rgba(91,140,91,1) 100%);
+        background: -webkit-linear-gradient(top, rgba(142,194,107,1) 0%, rgba(91,140,91,1) 100%);
+        background: -o-linear-gradient(top, rgba(142,194,107,1) 0%, rgba(91,140,91,1) 100%);
+        background: -ms-linear-gradient(top, rgba(142,194,107,1) 0%, rgba(91,140,91,1) 100%);
+        background: linear-gradient(to bottom, rgba(142,194,107,1) 0%, rgba(91,140,91,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8ec26b', endColorstr='#5b8c5b', GradientType=0 );
     }
     .hub-waste{
-background: rgba(3,3,3,1);
-background: -moz-linear-gradient(top, rgba(3,3,3,1) 0%, rgba(3,3,3,1) 20%, rgba(46,45,46,1) 100%);
-background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(3,3,3,1)), color-stop(20%, rgba(3,3,3,1)), color-stop(100%, rgba(46,45,46,1)));
-background: -webkit-linear-gradient(top, rgba(3,3,3,1) 0%, rgba(3,3,3,1) 20%, rgba(46,45,46,1) 100%);
-background: -o-linear-gradient(top, rgba(3,3,3,1) 0%, rgba(3,3,3,1) 20%, rgba(46,45,46,1) 100%);
-background: -ms-linear-gradient(top, rgba(3,3,3,1) 0%, rgba(3,3,3,1) 20%, rgba(46,45,46,1) 100%);
-background: linear-gradient(to bottom, rgba(3,3,3,1) 0%, rgba(3,3,3,1) 20%, rgba(46,45,46,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#030303', endColorstr='#2e2d2e', GradientType=0 );
+        background-color: white;
+    }
+    .sec-header{
+        text-align: center;
+        background-color: grey;
+        color: white;
+        padding-top: 8%;
+        padding-bottom: 8%;
+    }
+    .sec-normal{
+        background-color: white;
+        padding-top: 8%;
+        padding-bottom: 8%;
+    }
+    .go-top-btn{
+        transition: all 0.5s ease;
+        color: mediumpurple;
+    }
+    .go-top-btn:hover{
+        color: rebeccapurple !important;
     }
 </style>
 
 <! doctype html>
 {% block content %}
     <body style="margin: 0px;">
-			<section class="intro">
+            <a href="#intro"><i class="fa fa-chevron-circle-up fa-3x go-top-btn" style="position: fixed;right: 10px;bottom: 5px;color: mediumpurple;"></i></a>
+			<section id="intro" class="intro">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12" style="font-family: 'Arial Rounded MT Bold';font-size: 25px;text-align: center;margin-top: 30%;color: ghostwhite;">
@@ -59,41 +71,26 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#030303', end
                             <i class="fa fa-angle-down fa-5x animated fadeInDown infinite"></i>
                         </div>
                     </div>
+
                 </div>
             </section>
 
-            <section style="background-color: black;">
+            <section style="background-color: white;">
                 <div class="container">
                     <div class="row">
+                        <div class="col-md-12 sec-header" style="background-color: #2a4e5a;">
+                            What a Waste?
+                        </div>
+                        <div class="col-md-12 sec-normal">
+                            More than 506 tonnes of waste and 243 tonnes of recycling is disposed of from the north Terrace campus every year.
+                            <div style="padding-top: 5%;">Combined, this weighs as much as five full-sized whales!</div>
+                        </div>
                         <div class="col-md-12" style="padding: 0px;">
                             <img src="{% static 'we/images/trashed_ocean_whale_cartoon.jpg' %}" alt="" style="width: 100%;">
                         </div>
-                        <div class="col-md-12" style="text-align: center;background-color: #7C0F36;padding-top: 10%;padding-bottom: 10%;">
-                            <span style="font-family: 'Arial Rounded MT Bold';font-size: 25px;color: whitesmoke;">
-                               506 tonnes of waste <span style="font-size: 10px;">every year</span>
-                            </span>
+                        <div class="col-md-12 sec-normal">
+                            We must all make an effort to dispose of waste and recycling correctly.
                         </div>
-                        <div class="col-md-12" style="text-align: center;background-color: #C9BB23;padding-top: 10%;padding-bottom: 10%;">
-                            <span style="font-family: 'Arial Rounded MT Bold';font-size: 25px;color: whitesmoke;">
-                               243 tonnes of recycling <span style="font-size: 10px;">every year</span>
-                            </span>
-                        </div>
-                        <div class="col-md-12" style="text-align: center;background-color: #0093C8;padding-top: 10%;padding-bottom: 10%;">
-                            <span style="font-family: 'Arial Rounded MT Bold';font-size: 25px;color: whitesmoke;">
-                                Combined, this weighs as much as <h1 class="animated infinite pulse" style="white-space: nowrap;padding: 0px;margin: 0px;">five</h1> full-sized blue whales!
-                            </span>
-                        </div>
-{#                        <div class="col-md-12" style="background-color: #648c96;padding-top: 4%;padding-bottom: 4%;">#}
-{#                            <span style="font-family: 'Arial Rounded MT Bold';font-size: 15px;color: whitesmoke;">#}
-{#                                Around 15 tonnes of waste and 12 tonnes of recycling is generated in Hub Central alone, including 73,000 coffee cups and 9 tonnes of food scraps.#}
-{#                                Unfortunately, much of this waste and recycling is placed in the wrong bin, which ‘contaminates’ other items in the bin. If recycling or organics bins are contaminated, none of the items in that bin can be recycled and the entire bin will go to landfill – pretty frustrating for the people who are recycling correctly.#}
-{#                            </span>#}
-{#                        </div>#}
-{#                        <div class="col-md-12" style="background-color: #1b6d85;padding-top: 4%;padding-bottom: 4%;">#}
-{#                            <span style="font-family: 'Arial Rounded MT Bold';font-size: 15px;color: whitesmoke;">#}
-{#                                This App has been created to help teach correct recycling practices in order to increase recycling rates and decrease volumes of waste to landfill.#}
-{#                            </span>#}
-{#                        </div>#}
                     </div>
                 </div>
             </section>
@@ -101,53 +98,57 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#030303', end
 			<section class="hub-waste">
                 <div class="container">
                     <div class="row" >
-                        <div class="col-md-12" style="font-size: 25px;color: white;text-align: left;margin-left: 20px;margin-top: 5%;">
-                            Waste Generated by Hub
+                        <div class="col-md-12 sec-header" style="background-color: #D4A900;">
+                            Waste Generated in the Hub (2015)
                         </div>
-                    </div>
-                    <div class="row" style="margin-top: 20px;">
-                        <div class="col-md-12" style="text-align: center;font-family: 'Arial Rounded MT Bold';background-color: #2e6da4;padding-top: 5vh;padding-bottom: 5vh;">
-                            <div style="font-family: 'Arial Rounded MT Bold';color: white;font-size: 55px;">
-                                27<span style="font-family: 'Arial Rounded MT Bold';font-size: 15px;color: white;">Tonnes Total</span>
-                            </div>
+                        <div class="col-md-12" style="padding-top: 3%;padding-bottom: 3%;">
+                            <img src="{% static 'we/images/waste_percentage.png' %}" alt="" style="width: 100%;">
                         </div>
-                    </div>
-                    <div class="row" style="margin-top: 10px;">
-                        <div class="col-md-12" style="text-align: center;font-family: 'Arial Rounded MT Bold';background-color: #B80313;padding-top: 5vh;padding-bottom: 5vh;">
-                            <div style="font-family: 'Arial Rounded MT Bold';color: white;font-size: 55px;">
-                                15<span style="font-family: 'Arial Rounded MT Bold';font-size: 15px;color: white;"> Tonnes General Waste</span>
-                            </div>
+                        <div class="col-md-12" style="padding: 0px;">
+                            <img src="{% static 'we/images/bar_recycling.jpg' %}" alt="" style="width: 100%;">
                         </div>
-                    </div>
-                    <div class="row" style="margin-top: 10px;">
-                        <div class="col-md-12" style="text-align: center;font-family: 'Arial Rounded MT Bold';background-color: #CCB10D;padding-top: 5vh;padding-bottom: 5vh;">
-                            <div style="font-family: 'Arial Rounded MT Bold';color: white;font-size: 55px;">
-                                12<span style="font-family: 'Arial Rounded MT Bold';font-size: 15px;color: white;"> Tonnes Recycled</span>
-                            </div>
+                        <div class="col-md-12" style="padding: 0px;">
+                            <img src="{% static 'we/images/bar_food_scraps.jpg' %}" alt="" style="width: 100%;">
+                        </div>
+                        <div class="col-md-12" style="padding: 0px;">
+                            <img src="{% static 'we/images/bar_waste.jpg' %}" alt="" style="width: 100%;">
                         </div>
                     </div>
                 </div>
             </section>
-            <section style="background-color: #f9b856;">
+
+            <section class="hub-waste">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 sec-header" style="background-color: #7AB531;">
+                            What about the recycling in hub?
+                        </div>
+                        <div class="col-md-12" style="padding: 0px;">
+                            <iframe width="100%" height="315" src="https://www.youtube.com/embed/ItVyBL03iIA" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
             </section>
 
 
-            <section class="info">
+
+            <section style="background-color: black;">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-12" style="text-align: center;color: whitesmoke;font-family: 'Arial Rounded MT Bold';font-size: 20px;padding-top: 50%;">
-                            For more information about waste and recycling on campus, check out the Ecoversity website <a href="https://www.adelaide.edu.au/ecoversity">www.adelaide.edu.au/ecoversity</a> or subscribed on facebook.
+                        <div class="col-md-12" style="text-align: center;color: whitesmoke;font-family: 'Arial Rounded MT Bold';font-size: 20px;margin-top: 50%;background-color: #7ecad1;padding-top: 10%;padding-bottom: 10%;">
+                            For more information about waste and recycling on campus, check out the Ecoversity website <a href="https://www.adelaide.edu.au/ecoversity">www.adelaide.edu.au/ecoversity</a> or subscribed on Facebook or Twitter.
                         </div>
-                        <div class="col-md-12" style="text-align: center;padding-top: 5%;">
-                            <a href="/">
-                                <i class="fa fa-facebook-official fa-5x" style="color: #7C0F36;"></i>
+                        <div class="col-md-12" style="text-align: center;margin-top: 5%;">
+                            <a href="https://www.facebook.com/uniofadelaide/?fref=ts">
+                                <i class="fa fa-facebook-official fa-5x" style="color: #4862a3;"></i>
+                            </a>
+                            <a href="https://twitter.com/uniofadelaide" style="margin-left: 5px;">
+                                <i class="fa fa-twitter-square fa-5x" style="color: #55acee;"></i>
                             </a>
                         </div>
                     </div>
                 </div>
             </section>
-
-
 
 		</body>
 
@@ -155,13 +156,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#030303', end
     <script src="{% static 'we/js/jquery-1.6.js' %}"></script>
     <script src="{% static 'we/js/jquery.scrollify.js' %}"></script>
     <script>
-				$(function() {
-					$.scrollify({
-						section : "section",
-					});
-				});
-    </script>
-    <script>
+        $(function() {
+            $.scrollify({
+                section : "section",
+            });
+        });
         $.scrollify({
 		    section : "section",
 		    sectionName : "section-name",
@@ -174,6 +173,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#030303', end
 		    afterResize:function() {}
 	    });
     </script>
+{#    <script src="{% static 'we/js/Chart.min.js' %}"></script>#}
 {% endblock %}
 
 
