@@ -130,7 +130,7 @@ class SecureRESTViewController: UIViewController, NetProtocol{
         
         do {
             
-            var data = try NSURLConnection.sendSynchronousRequest(request, returningResponse: &response) as NSData?
+            _ = try NSURLConnection.sendSynchronousRequest(request, returningResponse: &response) as NSData?
             
             if let httpResponse = response as? NSHTTPURLResponse {
                 print("error \(httpResponse.statusCode)")
@@ -142,9 +142,7 @@ class SecureRESTViewController: UIViewController, NetProtocol{
                     
                     (data, response, error) in print(NSString(data: data!, encoding: NSUTF8StringEncoding)!)
                     
-//                    if let httpResponse = response as? NSHTTPURLResponse {
-                        print("error \(httpResponse.statusCode)")
-//                    }
+                    print("error \(httpResponse.statusCode)")
                     
                     
                     if (data != nil){
@@ -189,12 +187,7 @@ class SecureRESTViewController: UIViewController, NetProtocol{
             print(error.localizedDescription)
         }
         
-        
-       
-        
-        
-        
-            }
+        }
     
 //    func resultHandler(jsonResult: AnyObject!) {
 //        

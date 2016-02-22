@@ -229,7 +229,7 @@ class YesNoViewController: UIViewController, NetProtocol {
         
         do {
             
-            var data = try NSURLConnection.sendSynchronousRequest(request, returningResponse: &response) as NSData?
+            var _ = try NSURLConnection.sendSynchronousRequest(request, returningResponse: &response) as NSData?
             
             if let httpResponse = response as? NSHTTPURLResponse {
                 print("error \(httpResponse.statusCode)")
@@ -296,7 +296,10 @@ class YesNoViewController: UIViewController, NetProtocol {
     func getDataFromServer(compleionHandler: ((AnyObject!) -> Void)?) {
         
         let semaphore = dispatch_semaphore_create(0)
-        let task = NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: Net.trueFalseQuizAddress)!){
+        let request = NSMutableURLRequest(URL: NSURL(string: Net.trueFalseQuizAddress)!)
+        request.HTTPMethod = "GET"
+        request.setValue("Token " + userToken, forHTTPHeaderField: "Authorization")
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request){
             
             (data, response, error) in print(NSString(data: data!, encoding: NSUTF8StringEncoding)!)
             

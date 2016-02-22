@@ -178,10 +178,12 @@ class SurveyViewController: UIViewController, NetProtocol {
     func getDataFromServer(compleionHandler: ((AnyObject!) -> Void)?){
         
         //For the local test
-        let url = NSURL(string: Net.multipleChoiceAddress)
         
         let semaphore = dispatch_semaphore_create(0)
-        let task = NSURLSession.sharedSession().dataTaskWithURL(url!){
+        let request = NSMutableURLRequest(URL: NSURL(string: Net.multipleChoiceAddress)!)
+        request.HTTPMethod = "GET"
+        request.setValue("Token " + userToken, forHTTPHeaderField: "Authorization")
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request){
             
             (data, response, error) in print(NSString(data: data!, encoding: NSUTF8StringEncoding)!)
             

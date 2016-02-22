@@ -252,7 +252,7 @@ class WhichBinViewController: UIViewController, NetProtocol {
         
         do {
             
-            var data = try NSURLConnection.sendSynchronousRequest(request, returningResponse: &response) as NSData?
+            _ = try NSURLConnection.sendSynchronousRequest(request, returningResponse: &response) as NSData?
             
             if let httpResponse = response as? NSHTTPURLResponse {
                 print("error \(httpResponse.statusCode)")
@@ -324,7 +324,10 @@ class WhichBinViewController: UIViewController, NetProtocol {
     
     func getDataFromServer(compleionHandler: ((AnyObject!) -> Void)?) {
         let semaphore = dispatch_semaphore_create(0)
-        let task = NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: Net.whichBinQuizAddress)!){
+        let request = NSMutableURLRequest(URL: NSURL(string: Net.whichBinQuizAddress)!)
+        request.HTTPMethod = "GET"
+        request.setValue("Token " + userToken, forHTTPHeaderField: "Authorization")
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request){
             
             (data, response, error) in print(NSString(data: data!, encoding: NSUTF8StringEncoding)!)
             
