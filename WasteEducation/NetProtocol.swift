@@ -18,5 +18,5 @@ protocol NetProtocol{
     
     func resultHandler(jsonResult: AnyObject!)
     
-    
+    func getTokenFromServer()
 }

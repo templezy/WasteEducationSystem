@@ -22,6 +22,7 @@ class WhichBinViewController: UIViewController, NetProtocol {
     var wasteBlue: UIColor!
     var wasteImageView: UIImageView!
     var wasteItemDescrption: UILabel!
+    var userToken = ""
     
     var userScore = 0
     
@@ -46,11 +47,15 @@ class WhichBinViewController: UIViewController, NetProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dataFetching()
-        
-        initUI()
         // Do any additional setup after loading the view.
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        initUI()
+        
+        getTokenFromServer()
+    }
+    
     
     override func prefersStatusBarHidden() -> Bool {
         return true
@@ -236,6 +241,79 @@ class WhichBinViewController: UIViewController, NetProtocol {
     }
     
     
+    func getTokenFromServer() {
+        let semaphore = dispatch_semaphore_create(0)
+        let request = NSMutableURLRequest(URL: NSURL(string: Net.tokenAddress)!)
+        request.HTTPMethod = "POST"
+        let postString = "username="+Auth.username+"&password="+Auth.password
+        request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
+        
+        var response: NSURLResponse?
+        
+        do {
+            
+            var data = try NSURLConnection.sendSynchronousRequest(request, returningResponse: &response) as NSData?
+            
+            if let httpResponse = response as? NSHTTPURLResponse {
+                print("error \(httpResponse.statusCode)")
+            }
+            
+            
+            if let httpResponse = response as? NSHTTPURLResponse {
+                let task = NSURLSession.sharedSession().dataTaskWithRequest(request){
+                    
+                    (data, response, error) in print(NSString(data: data!, encoding: NSUTF8StringEncoding)!)
+                    
+                    print("error \(httpResponse.statusCode)")
+                    
+                    if (data != nil){
+                        let test = NSString(data: data!, encoding: NSUTF8StringEncoding)!
+                        let jsonData: NSData = test.dataUsingEncoding(NSUTF8StringEncoding)!
+                        
+                        do {
+                            let json: AnyObject? = try NSJSONSerialization.JSONObjectWithData(jsonData, options: [])
+                            
+                            //Solve the problem that first question could not be loaded
+                            dispatch_async(dispatch_get_main_queue()) {
+                                //                        self.updateQuestion()
+                                
+                                let tempToken = json as? NSDictionary
+                                let token = tempToken!["token"] as! String
+                                
+                                self.self.userToken = token
+                                self.dataFetching()
+                            }
+                            
+                            //Enable the data could assign to the global variable
+                            
+                            dispatch_semaphore_signal(semaphore)
+                        } catch let error as NSError {
+                            print(error.localizedDescription)
+                        }
+                    }
+                    
+                }
+                task.resume()
+                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW)
+            }else {
+                backToPrevious()
+            }
+            
+        } catch let error as NSError {
+            print(error.localizedDescription)
+            
+            backToPrevious()
+        }
+    }
+    
+    func backToPrevious(){
+        let mainView = self.storyboard?.instantiateViewControllerWithIdentifier("MainController") as! UITabBarController
+        
+        mainView.selectedIndex = 1
+        self.presentViewController(mainView, animated: true, completion: nil)
+    }
+    
+    
     // MARK: Data fetching and processing
     
     func dataFetching() {
@@ -385,9 +463,7 @@ class WhichBinViewController: UIViewController, NetProtocol {
             blurViewWithTag.removeFromSuperview()
         }
         
-        let mainView = self.storyboard?.instantiateViewControllerWithIdentifier("MainController") as! UITabBarController
-        mainView.selectedIndex = 1
-        self.presentViewController(mainView, animated: true, completion: nil)
+        backToPrevious()
         
     }
     

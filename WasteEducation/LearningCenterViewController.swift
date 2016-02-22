@@ -30,17 +30,17 @@ class LearningCenterViewController: UIViewController, UIWebViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        if navigationType == UIWebViewNavigationType.LinkClicked {
-            if (request.URL!.host! == Net.lcenterAddress){
-                return true
-            } else {
-                UIApplication.sharedApplication().openURL(request.URL!)
-                return false
-            }
-        }
-        return true
-    }
+//    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+//        if navigationType == UIWebViewNavigationType.LinkClicked {
+//            if (request.URL!.host! == Net.lcenterAddress){
+//                return true
+//            } else {
+//                UIApplication.sharedApplication().openURL(request.URL!)
+//                return false
+//            }
+//        }
+//        return true
+//    }
     
     override func prefersStatusBarHidden() -> Bool {
         return true

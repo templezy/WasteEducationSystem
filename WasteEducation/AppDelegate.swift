@@ -13,26 +13,76 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 //        application.statusBarHidden = true
         // Override point for customization after application launch.
         application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))  // types are UIUserNotificationType members
+        
+        let statusCode = WEServer.isConnectedToNetwork()
+        
+        
+        
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        let firstLaunch = NSUserDefaults.standardUserDefaults().boolForKey("FirstLaunch")
-//        if firstLaunch {
-//            let initialViewController = mainStoryboard.instantiateViewControllerWithIdentifier("IntroViewController") as! IntroViewController
-//            self.window?.rootViewController = initialViewController
-//        }else{
-//            let initialViewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainController") as! SystemMainViewController
-//            self.window?.rootViewController = initialViewController
-//        }
+        
+        print(statusCode)
+        
+        if statusCode == 102 {
+            
+            let alert = UIAlertView()
+            alert.tag = 101
+            alert.delegate = self
+            alert.title = "Error"
+            alert.message = "Server is down or during a maintenance! Pleas try later."
+            alert.addButtonWithTitle("OK")
+            alert.show()
+            
+            
+        } else if statusCode == 101 {
+            
+            let alert = UIAlertView()
+            alert.tag = 101
+            alert.delegate = self
+            alert.title = "Error"
+            alert.message = "Server is down or during a maintenance! Pleas try later."
+            alert.addButtonWithTitle("OK")
+            alert.show()
+        }
+
+        
+        let firstLaunch = NSUserDefaults.standardUserDefaults().boolForKey("FirstLaunch")
+        if firstLaunch {
+            let initialViewController = mainStoryboard.instantiateViewControllerWithIdentifier("IntroViewController") as! IntroViewController
+            self.window?.rootViewController = initialViewController
+        }else{
+            let initialViewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainController") as! SystemMainViewController
+            self.window?.rootViewController = initialViewController
+            
+        }
         
         self.window?.makeKeyAndVisible()
         
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
+    
+    func alertView(View: UIAlertView!, clickedButtonAtIndex buttonIndex: Int){
+        
+        if(View.tag == 101 || View.tag == 102)
+        {
+            switch buttonIndex{
+            case 0:
+                exit(0);
+                break;
+            default:
+                print("Default");
+                break;
+                
+            }
+        }
+    }
+    
+    
     
     func application(application: UIApplication,
         openURL url: NSURL,

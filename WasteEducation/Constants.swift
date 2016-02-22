@@ -11,7 +11,7 @@ import Foundation
 // MARK: RESTful API
 struct Net {
 //    static let serverAddress = "http://192.241.184.96:8081"
-    static let serverAddress = "http://0.0.0.0:8000"
+    static let serverAddress = "http://10.201.7.29:8000"
     static let multipleChoiceAddress = Net.serverAddress + "/we/multiple_choice/"
     static let trueFalseQuizAddress = Net.serverAddress + "/we/true_false_question/"
     static let whichBinQuizAddress = Net.serverAddress + "/we/which_bin_question/"
@@ -19,6 +19,7 @@ struct Net {
     static let cdcalcuAddress = Net.serverAddress + "/we/cdcalcu/"
     static let lcenterAddress = Net.serverAddress + "/we/learningcenter/"
     static let feedbackAddress = Net.serverAddress + "/we/feedback/"
+    static let tokenAddress = Net.serverAddress + "/api-token-auth/"
 }
 
 //MARK: Debug
@@ -50,4 +51,10 @@ struct Settings {
 struct GameSound {
     static var correctAudio = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("true", ofType: "wav")!)
     static var incorrectAudio = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("false", ofType: "wav")!)
+}
+
+//MARK: Authen
+struct Auth {
+    static var username = "zhouyue"
+    static var password = "199271zy"
 }

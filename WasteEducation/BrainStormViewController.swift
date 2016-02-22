@@ -168,6 +168,10 @@ class BrainStormViewController: UIViewController, NetProtocol {
         getDataFromServer(self.resultHandler)
     }
     
+    func getTokenFromServer() {
+        
+    }
+    
     
     func getDataFromServer(compleionHandler: ((AnyObject!) -> Void)?) {
         
