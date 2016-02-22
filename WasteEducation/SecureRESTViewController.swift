@@ -42,8 +42,6 @@ class SecureRESTViewController: UIViewController, NetProtocol{
     }
     */
     
-    
-    
     func dataFetching() {
        getDataFromServer(self.resultHandler)
     }
