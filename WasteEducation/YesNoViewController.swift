@@ -232,7 +232,7 @@ class YesNoViewController: UIViewController, NetProtocol {
             var _ = try NSURLConnection.sendSynchronousRequest(request, returningResponse: &response) as NSData?
             
             if let httpResponse = response as? NSHTTPURLResponse {
-                print("error \(httpResponse.statusCode)")
+//                print("error \(httpResponse.statusCode)")
             }
             
             
@@ -241,7 +241,7 @@ class YesNoViewController: UIViewController, NetProtocol {
                     
                     (data, response, error) in print(NSString(data: data!, encoding: NSUTF8StringEncoding)!)
                     
-                    print("error \(httpResponse.statusCode)")
+//                    print("error \(httpResponse.statusCode)")
                     
                     if (data != nil){
                         let test = NSString(data: data!, encoding: NSUTF8StringEncoding)!
@@ -301,7 +301,9 @@ class YesNoViewController: UIViewController, NetProtocol {
         request.setValue("Token " + userToken, forHTTPHeaderField: "Authorization")
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request){
             
-            (data, response, error) in print(NSString(data: data!, encoding: NSUTF8StringEncoding)!)
+            (data, response, error) in
+            
+//            print(NSString(data: data!, encoding: NSUTF8StringEncoding)!)
             
             if (data != nil){
                 let test = NSString(data: data!, encoding: NSUTF8StringEncoding)!

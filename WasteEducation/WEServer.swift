@@ -42,17 +42,17 @@ class WEServer{
         }
         var flags = SCNetworkReachabilityFlags()
         if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) {
-            print("1")
+//            print("1")
             return ConnectionStatusCode.NotInNetEnvironment.rawValue
         }
         if !self.statusFetching(){
-            print("3")
+//            print("3")
             return ConnectionStatusCode.ServerDown_Maintain.rawValue
         }
         let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
         let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
         if (isReachable && !needsConnection){
-            print("2")
+//            print("2")
         }else{
             return ConnectionStatusCode.ServerDown_Maintain.rawValue
         }
@@ -71,7 +71,7 @@ class WEServer{
             let request = NSMutableURLRequest(URL: NSURL(string: Net.lcenterAddress)!)
             _ = try NSURLConnection.sendSynchronousRequest(request, returningResponse: &response) as NSData?
             if let httpResponse = response as? NSHTTPURLResponse {
-                print("error \(httpResponse.statusCode)")
+//                print("error \(httpResponse.statusCode)")
             }
         } catch let error as NSError{
             print(error.localizedDescription)

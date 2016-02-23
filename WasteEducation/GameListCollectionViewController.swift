@@ -125,7 +125,6 @@ class GameListCollectionViewController: UICollectionViewController, UICollection
     func buttonPressed(sender: UIButton!){
         
         let pressedLocation = sender.tag
-        print("$$$$$$$$$: " + String(sender.tag))
         if(pressedLocation == 0){
             let surveyView = self.storyboard?.instantiateViewControllerWithIdentifier("SurveyViewController") as! SurveyViewController
             self.presentViewController(surveyView, animated: true, completion: nil)
