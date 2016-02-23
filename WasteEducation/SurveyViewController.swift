@@ -331,23 +331,7 @@ class SurveyViewController: UIViewController, NetProtocol {
     }
     
     
-    
-    // MARK: Tap Recognizer Event
-    
-    @IBAction func showControlMenu(sender: UITapGestureRecognizer) {
-        let menuControlView = MenuControlView()
-        menuControlView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
-        
-        menuControlView.backMainButton.addTarget(self, action: "returnToMain:", forControlEvents: UIControlEvents.TouchUpInside)
-
-        self.view.addSubview(menuControlView)
-    }
-    
-    //Set the event handler for the returnToMain button
-    
-    func returnToMain(sender: UIButton!){
-        //Dismiss blur view and menu view
-        
+    func removeBlurView(){
         if let menuViewWithTag = self.view.viewWithTag(100){
             menuViewWithTag.alpha = 1
             UIView.animateWithDuration(0.35, animations: {menuViewWithTag.alpha = 0.0})
@@ -358,9 +342,45 @@ class SurveyViewController: UIViewController, NetProtocol {
             UIView.animateWithDuration(0.35, animations: {blurViewWithTag.alpha = 0.0})
             blurViewWithTag.removeFromSuperview()
         }
+    }
+    
+    
+    // MARK: Tap Recognizer Event
+    
+    @IBAction func showControlMenu(sender: UITapGestureRecognizer) {
+        let menuControlView = MenuControlView()
+        menuControlView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
+        
+        menuControlView.backMainButton.addTarget(self, action: "returnToMain:", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        menuControlView.restartButton.addTarget(self, action: "restartGame:", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        self.view.addSubview(menuControlView)
+    }
+    
+    //Set the event handler for the returnToMain button
+    
+    func returnToMain(sender: UIButton!){
+        //Dismiss blur view and menu view
+        
+        removeBlurView()
 
         backToPrevious()
+    }
+    
+    func restartGame(sender: UIButton!){
+        self.userScore = 0
+        self.scoreLabel.text = "0"
+        self.aButton.setTitle("", forState: .Normal)
+        self.bButton.setTitle("", forState: .Normal)
+        self.cButton.setTitle("", forState: .Normal)
+        self.questionDescirption.text = ""
         
+        initialUI()
+        
+        getTokenFromServer()
+        
+        removeBlurView()
     }
     
 }

@@ -368,14 +368,13 @@ class YesNoViewController: UIViewController, NetProtocol {
         
         menuControlView.backMainButton.addTarget(self, action: "returnToMain:", forControlEvents: UIControlEvents.TouchUpInside)
         
+        menuControlView.restartButton.addTarget(self, action: "restartGame:", forControlEvents: UIControlEvents.TouchUpInside)
+        
         self.view.addSubview(menuControlView)
     }
     
-    //Set the event handler for the returnToMain button
     
-    func returnToMain(sender: UIButton!){
-        //Dismiss blur view and menu view
-        
+    func removeBlurView(){
         if let menuViewWithTag = self.view.viewWithTag(100){
             menuViewWithTag.alpha = 1
             UIView.animateWithDuration(0.35, animations: {menuViewWithTag.alpha = 0.0})
@@ -386,12 +385,32 @@ class YesNoViewController: UIViewController, NetProtocol {
             UIView.animateWithDuration(0.35, animations: {blurViewWithTag.alpha = 0.0})
             blurViewWithTag.removeFromSuperview()
         }
+    }
+    
+    
+    
+    //Set the event handler for the returnToMain button
+    
+    func returnToMain(sender: UIButton!){
+        //Dismiss blur view and menu view
+        
+        removeBlurView()
         
         backToPrevious()
         
     }
     
-    
+    func restartGame(sender: UIButton!){
+        self.userScore = 0
+        self.questionDescription.text = ""
+        self.scoreLabel.text = "0"
+        
+        initUI()
+        
+        getTokenFromServer()
+        
+        removeBlurView()
+    }
 
     /*
     // MARK: - Navigation
