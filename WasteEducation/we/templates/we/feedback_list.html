@@ -1,0 +1,61 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'we/css/bootstrap.min.css' %}"/>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Feedback</h1>
+            <hr>
+        </div>
+    </div>
+</div>
+
+
+{% for feedback in feedbacks %}
+    {# Each "contact" is a Contact model object. #}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        {{ feedback.feedback_text|upper }}
+                    </div>
+                    <div class="panel-body">
+                        {{ feedback.feedback_content }}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12" style="text-align: center;">
+            <div class="pagination">
+    <span class="step-links">
+        <nav>
+            <ul class="pager">
+
+                {% if feedbacks.has_previous %}
+                    <li><a href="?page={{ feedbacks.previous_page_number }}">Previous</a></li>
+                {% endif %}
+
+                <span class="current" style="color: #397eb9;">
+                    Page {{ feedbacks.number }} of {{ feedbacks.paginator.num_pages }}
+                </span>
+
+                {% if feedbacks.has_next %}
+                    <li><a href="?page={{ feedbacks.next_page_number }}">Next</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+

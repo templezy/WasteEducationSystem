@@ -15,6 +15,7 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from serializers import RubbishbinSerializer, QuestionSerializer, SingleQuestionSerializer, TrueFalseSingleQuestionSerializer, WhichBinSingleQuestionSerializer, KeepInMindSingleQuestionSerializer, FeedbackSerializer
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 
 
@@ -244,3 +245,18 @@ def example_view(request, format=None):
     }
     return Response(content)
 
+
+def feedbacklist(request):
+    feedback_list = Feedback.objects.all()
+    paginator = Paginator(feedback_list, 10)
+
+    page = request.GET.get('page')
+
+    try:
+        feedbacks = paginator.page(page)
+    except PageNotAnInteger:
+        feedbacks = paginator.page(1)
+    except EmptyPage:
+        feedbacks = paginator.page(paginator.num_pages)
+
+    return render(request, 'we/feedback_list.html', {'feedbacks': feedbacks})

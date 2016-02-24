@@ -25,4 +25,5 @@ urlpatterns = [
     url(r'^(?P<rubbishbin_id>[0-9]+)/results/$', views.results, name='results'),
     url(r'^(?P<rubbishbin_id>[0-9]+)/choose/$', views.choose, name='choose'),
     url(r'^example/$', views.example_view, name='example'),
+    url(r'^feedback_list/$', views.feedbacklist, name='feedbacklist'),
 ]
