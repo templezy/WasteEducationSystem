@@ -20,10 +20,6 @@ A new Python environment will be set up under a directory called weserverenv. We
 
 ```source weserverenv/bin/activate```
 
-Your prompt should change to indicate that you are now operating within the virtual environment. It will look something like this:
-
-```(weserverenv)username@host:~/we_server$```
-
 If you wish to leave this environment at any time, you can simply type:
 
 ```deactivate```
